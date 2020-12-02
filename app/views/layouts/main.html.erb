@@ -1,8 +1,8 @@
 <% content_for :content do %>
+	<%= render 'nav', floating: true %>
+
 	<main>
 		<%= yield %>
-
-		<%= render 'nav', locals: {floating: true} %>
 	</main>
 <% end %>
 

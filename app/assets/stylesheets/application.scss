@@ -1,0 +1,76 @@
+html, body {
+	height: 100%
+}
+
+body {
+	background: linear-gradient(to right bottom, #AA076B 60%, #61045F);
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	color: white;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 18px;
+}
+
+h1, h2 {
+	font-weight: 900;
+	margin: 0;
+}
+
+h1 {
+	font-size: 8em;
+}
+
+a, a:visited {
+	color: white;
+	font-weight: 900;
+}
+
+a:hover {
+	color: #ece;
+}
+
+a:active {
+	color: #eae;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	padding-bottom: 4em;
+	height: 16em;
+	background: linear-gradient(to bottom, #AA076B 80%, transparent);
+}
+
+header.floating {
+	height: 6em;
+
+	h1 {
+		font-size: calc(1rem + 8vw);
+	}
+}
+
+main {
+	max-width: 40rem;
+	margin-block: 10em 2em;
+}
+
+@media (min-width: 56rem) {
+	header.floating {
+		top: auto;
+		background: none;
+		padding: 0;
+		height: auto;
+		right: 1rem;
+		bottom: 1rem;
+		width: 16rem;
+		text-align: right;
+
+		h1 {
+			font-size: 5em;
+		}
+	}
+
+	main {
+		margin-block-start: 1em;
+	}
+}
