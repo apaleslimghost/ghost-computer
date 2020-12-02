@@ -1,9 +1,9 @@
 # todo
 
-- [ ] posts
+- [x] posts
   - [ ] markdown
 - [ ] auth
 - [ ] drag & drop
-- [ ] design
+- [x] design
 - [ ] activestorage
 - [ ] deploy
