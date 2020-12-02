@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>GhostComputer</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+        <title>GhostComputer</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-  </head>
+        <%= stylesheet_link_tag 'application', media: 'all' %>
+    </head>
 
-  <body>
-    <%= content_for?(:content) ? yield(:content) : yield %>
-  </body>
+    <body class="<%= controller_name.underscore.dasherize %>">
+        <%= render 'nav' %>
+
+        <main>
+            <%= yield %>
+        </main>
+    </body>
 </html>

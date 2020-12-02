@@ -14,10 +14,6 @@ body {
 h1, h2 {
 	font-weight: 900;
 	margin-block: 0 2rem;
-}
-
-h1 {
-	font-size: 8em;
 	line-height: 1;
 }
 
@@ -38,41 +34,50 @@ header {
 	position: fixed;
 	top: 0;
 	padding-bottom: 4em;
-	height: 16em;
 	max-width: 60rem;
 	background: linear-gradient(to bottom, #AA076B 80%, transparent);
-}
-
-header.floating {
 	height: 6em;
 
 	h1 {
 		font-size: calc(1rem + 8vw);
+
+		body.home & {
+			font-size: 8em;
+		}
+	}
+
+	body.home & {
+		height: 16em;
+	}
+
+	@media (min-width: 56rem) {
+		body:not(.home) & {
+			top: auto;
+			background: none;
+			padding: 0;
+			height: auto;
+			right: 1rem;
+			bottom: 1rem;
+			width: 16rem;
+			text-align: right;
+
+			h1 {
+				font-size: 5em;
+			}
+		}
 	}
 }
 
 main {
 	max-width: 40rem;
 	margin-block: 10em 2em;
-}
 
-@media (min-width: 56rem) {
-	header.floating {
-		top: auto;
-		background: none;
-		padding: 0;
-		height: auto;
-		right: 1rem;
-		bottom: 1rem;
-		width: 16rem;
-		text-align: right;
+	@media (min-width: 56rem) {
+		margin-block-start: 1em;
 
-		h1 {
-			font-size: 5em;
+		body.home & {
+			margin-left: auto;
 		}
 	}
-
-	main {
-		margin-block-start: 1em;
-	}
 }
+
