@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
   layout 'application'
-  def index; end
+  def index
+    @posts = Post.all
+  end
 end
