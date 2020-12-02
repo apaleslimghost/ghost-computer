@@ -34,7 +34,7 @@ header {
 	position: fixed;
 	top: 0;
 	padding-bottom: 4em;
-	max-width: 60rem;
+	max-width: 50rem;
 	background: linear-gradient(to bottom, #AA076B 80%, transparent);
 	height: 6em;
 
@@ -47,7 +47,7 @@ header {
 	}
 
 	body.home & {
-		height: 16em;
+		height: 30rem;
 	}
 
 	@media (min-width: 56rem) {
@@ -69,15 +69,35 @@ header {
 }
 
 main {
-	max-width: 40rem;
-	margin-block: 10em 2em;
+	body.home & {
+		display: grid;
+		gap: 1em;
+		grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+		grid-template-rows: masonry;
 
-	@media (min-width: 56rem) {
-		margin-block-start: 1em;
+		margin-block: 30em 2em;
 
-		body.home & {
-			margin-left: auto;
+		@media (min-width: 70rem) {
+			margin-block-start: 1em;
+			position: absolute;
+			left: 50rem;
+			right: 1rem;
+			top: 0;
 		}
 	}
+
+	body:not(.home) & {
+		max-width: 40rem;
+		margin-block: 10em 2em;
+
+		@media (min-width: 56rem) {
+			margin-block-start: 1em;
+		}
+	}
+}
+
+article {
+	padding-bottom: 2rem;
+	border-bottom: 1px solid white;
 }
 
