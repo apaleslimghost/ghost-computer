@@ -1,5 +1,6 @@
-<% puts local_assigns %>
 <header class="<%= local_assigns.fetch(:floating, false) ? 'floating' : '' %>">
 	<h1><a href="/">a pale slim ghost</a></h1>
 	<p>is <a href="/about">Kara Brightwell</a></p>
+
+	<%= yield(:nav_content) %>
 </header>

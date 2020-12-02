@@ -13,11 +13,12 @@ body {
 
 h1, h2 {
 	font-weight: 900;
-	margin: 0;
+	margin-block: 0 2rem;
 }
 
 h1 {
 	font-size: 8em;
+	line-height: 1;
 }
 
 a, a:visited {
@@ -38,6 +39,7 @@ header {
 	top: 0;
 	padding-bottom: 4em;
 	height: 16em;
+	max-width: 60rem;
 	background: linear-gradient(to bottom, #AA076B 80%, transparent);
 }
 
