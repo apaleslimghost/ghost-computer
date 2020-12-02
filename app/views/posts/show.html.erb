@@ -1,19 +1,4 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @post.title %></h1>
+<time datetime="<%= @post.posted %>"><%= time_ago_in_words @post.posted %> ago</time>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Posted:</strong>
-  <%= @post.posted %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<p><%= @post.body %></p>
