@@ -1,0 +1,38 @@
+html, body {
+	height: 100%
+}
+
+body {
+	background: linear-gradient(to right bottom, #AA076B 60%, #61045F);
+	background-size: 100% 100%;
+	color: white;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 18px;
+}
+
+h1, h2 {
+	font-weight: 900;
+	margin: 0;
+}
+
+h1 {
+	font-size: 8em;
+}
+
+a, a:visited {
+	color: white;
+	font-weight: 900;
+}
+
+a:hover {
+	color: #ece;
+}
+
+a:active {
+	color: #eae;
+}
+
+main {
+	margin-block: 2em;
+}
+
