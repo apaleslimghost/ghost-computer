@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.order(created: :desc)
+    @posts = Post.order(posted: :desc)
   end
 
   # GET /posts/1
