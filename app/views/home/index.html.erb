@@ -19,3 +19,9 @@
 <% end %>
 
 <%= render @posts %>
+
+<% if current_user %>
+	<article>
+		<%= render 'posts/form', post: Post.new %>
+	</article>
+<% end %>
