@@ -2,8 +2,8 @@
 
 - [x] posts
   - [ ] markdown
-- [ ] auth
+- [x] auth
 - [ ] drag & drop
 - [x] design
 - [ ] activestorage
-- [ ] deploy
+- [x] deploy
