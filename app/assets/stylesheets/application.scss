@@ -101,3 +101,13 @@ article {
 	border-bottom: 1px solid white;
 }
 
+.secret-login-link {
+	position: fixed;
+	color: transparent;
+	bottom: 0;
+	left: 0;
+
+	&:hover, &:active {
+		color: inherit;
+	}
+}

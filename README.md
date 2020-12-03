@@ -7,3 +7,6 @@
 - [x] design
 - [ ] activestorage
 - [x] deploy
+
+- [ ] fix home header styles on small screens
+- [ ] post date time
