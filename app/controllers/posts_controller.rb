@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: %i[show edit update destroy]
+  before_action :check_access, only: %i[new create edit update destroy]
 
   # GET /posts
   def index
@@ -7,8 +8,7 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1
-  def show
-  end
+  def show; end
 
   # GET /posts/new
   def new
@@ -16,12 +16,12 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /posts
   def create
     @post = Post.new(post_params)
+    @post.author = current_user
 
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
@@ -46,13 +46,18 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :posted, :body)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def check_access
+    raise ActionController::RoutingError, 'Not Found' unless current_user && (!@post || @post.author == current_user)
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :posted, :body)
+  end
 end
