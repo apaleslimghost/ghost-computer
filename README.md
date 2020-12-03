@@ -1,7 +1,7 @@
 # todo
 
 - [x] posts
-  - [ ] markdown
+  - [x] markdown
 - [x] auth
 - [ ] drag & drop
 - [x] design
