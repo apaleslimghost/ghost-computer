@@ -3,6 +3,7 @@
 <article>
 	<h2><%= link_to post.title, post %></h2>
 	<time datetime="<%= post.posted %>"><%= time_ago_in_words post.posted %> ago</time>
+	<%= button_to pluralize(post.likes, "yeet"), like_post_path(post) %>
 
 	<%= post.html_body %>
 </article>

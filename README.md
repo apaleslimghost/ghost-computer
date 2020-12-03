@@ -2,11 +2,18 @@
 
 - [x] posts
   - [x] markdown
+  - [ ] tags
+  - [ ] excerpts
+  - [ ] social preview
+  - [ ] slugs
+  - [ ] like
 - [x] auth
-- [ ] drag & drop
 - [x] design
-- [ ] activestorage
 - [x] deploy
+- [ ] rss 
+- [ ] drag & drop
+- [ ] activestorage
 
+## bugs
 - [ ] fix home header styles on small screens
 - [ ] post date time

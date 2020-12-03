@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show edit update destroy like]
   before_action :check_access, only: %i[new create edit update destroy]
 
   # GET /posts
@@ -37,6 +37,11 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def like
+    @post.increment!(:likes)
+    redirect_to @post
   end
 
   # DELETE /posts/1
