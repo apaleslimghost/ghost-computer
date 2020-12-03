@@ -34,7 +34,6 @@ header {
 	position: fixed;
 	top: 0;
 	padding-bottom: 4em;
-	max-width: 50rem;
 	background: linear-gradient(to bottom, #AA076B 80%, transparent);
 	height: 6em;
 
@@ -42,12 +41,22 @@ header {
 		font-size: calc(1rem + 8vw);
 
 		body.home & {
-			font-size: 8em;
+			font-size: calc(2.4rem + 8vw);
 		}
 	}
 
 	body.home & {
-		height: 30rem;
+		height: 24rem;
+	}
+
+	@media (min-width: 70rem) {
+		body.home & {
+			max-width: 50rem;
+
+			h1 {
+				font-size: 8rem;
+			}
+		}
 	}
 
 	@media (min-width: 56rem) {
@@ -75,7 +84,7 @@ main {
 		grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
 		grid-template-rows: masonry;
 
-		margin-block: 30em 2em;
+		margin-block: 24em 2em;
 
 		@media (min-width: 70rem) {
 			margin-block-start: 1em;
