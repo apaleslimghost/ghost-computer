@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   after_initialize :defaults
 
   def defaults
-    self.posted ||= Date.today
+    self.posted ||= DateTime.now
   end
 
   def html_body
