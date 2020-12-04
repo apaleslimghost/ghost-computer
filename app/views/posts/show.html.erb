@@ -1,2 +1,7 @@
 <% content_for :title, @post.title %>
+<% content_for :meta do %>
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="<%= @post.title %>">
+	<meta property="og:description" content="<%= @post.excerpt %>">
+<% end %>
 <%= render @post, show_full: true %>

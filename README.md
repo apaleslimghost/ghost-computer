@@ -3,16 +3,17 @@
 - [x] posts
   - [x] markdown
   - [x] like
-  - [ ] excerpts
-  - [ ] social preview
+  - [x] excerpts
+  - [x] social preview
   - [ ] tags
 - [x] auth
 - [x] design
 - [x] deploy
 - [ ] drag & drop
-- [ ] activestorage
+  - [ ] bear markdown ingest
+  - [ ] activestorage
 - [ ] rss 
 
 ## bugs
-- [ ] fix home header styles on small screens
-- [ ] post date time
+- [x] fix home header styles on small screens
+- [x] post date time
