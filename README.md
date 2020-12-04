@@ -2,17 +2,16 @@
 
 - [x] posts
   - [x] markdown
-  - [ ] tags
+  - [x] like
   - [ ] excerpts
   - [ ] social preview
-  - [ ] slugs
-  - [ ] like
+  - [ ] tags
 - [x] auth
 - [x] design
 - [x] deploy
-- [ ] rss 
 - [ ] drag & drop
 - [ ] activestorage
+- [ ] rss 
 
 ## bugs
 - [ ] fix home header styles on small screens
