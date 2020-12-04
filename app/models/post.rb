@@ -6,18 +6,7 @@ class Post < ApplicationRecord
     self.posted ||= Date.today
   end
 
-  def markdown
-    @markdown ||= Redcarpet::Markdown.new(
-      Redcarpet::Render::HTML,
-      tables: true,
-      no_intra_emphasis: true,
-      autolink: true,
-      footnotes: true,
-      fenced_code_blocks: true
-    )
-  end
-
   def html_body
-    markdown.render(body).html_safe
+    CommonMarker.render_html(body).html_safe
   end
 end
