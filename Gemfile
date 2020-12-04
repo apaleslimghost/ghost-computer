@@ -29,3 +29,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bcrypt', '~> 3.1'
 
 gem 'commonmarker', '~> 0.21.0'
+
+gem "webpacker", "~> 5.2"
+
+gem "turbolinks", "~> 5.2"
