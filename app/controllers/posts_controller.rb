@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy like]
-  before_action :check_access, only: %i[new create edit update destroy]
+  before_action :check_access, only: %i[new create edit update destroy upload]
 
   # GET /posts
   def index
@@ -17,6 +17,17 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit; end
+
+  def upload
+    params[:files].each do |file|
+      case file.content_type
+      when %r{text/(markdown|plain)}
+        post = Post.from_markdown(file.read)
+        post.author = current_user
+        post.save!
+      end
+    end
+  end
 
   # POST /posts
   def create

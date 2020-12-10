@@ -11,6 +11,16 @@ body {
 	font-size: 18px;
 }
 
+body.dropping::after {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #0003;
+	content: 'drop files to post'
+}
+
 h1, h2 {
 	font-weight: 900;
 	margin-block: 0 2rem;

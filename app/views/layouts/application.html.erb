@@ -17,11 +17,18 @@
         <%= stylesheet_link_tag 'application', media: 'all' %>
     </head>
 
-    <body class="<%= controller_name.underscore.dasherize %>">
+    <body class="<%= controller_name.underscore.dasherize %>"
+        <% if current_user %>
+          data-controller="drag-drop"
+          data-action="dragover->drag-drop#showOverlay dragleave->drag-drop#hideOverlay drop->drag-drop#uploadFiles"
+        <% end %>
+    >
         <%= render 'nav' %>
 
         <main>
             <%= yield %>
         </main>
+
+        <%= form_with(url: upload_path, data: { 'drag-drop-target': 'form' }) if current_user %>
     </body>
 </html>
