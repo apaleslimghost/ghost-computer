@@ -8,6 +8,12 @@ class Post < ApplicationRecord
     title = title_node.each.map(&:string_content).join
     title_node.delete
 
+    document.walk do |node|
+      if (node.type == :image) && !node.url.starts_with?('https://', 'http://', '/assets')
+        node.url = "/assets/#{node.url}"
+      end
+    end
+
     Post.new(
       title: title,
       body: document.to_commonmark
