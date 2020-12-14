@@ -39,6 +39,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_storage-postgresql (0.2.1)
+      pg (>= 1.0)
+      rails (>= 5.2)
     activejob (6.1.0.rc2)
       activesupport (= 6.1.0.rc2)
       globalid (>= 0.3.6)
@@ -170,6 +173,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_storage-postgresql (~> 0.2.1)
   bcrypt (~> 3.1)
   byebug
   commonmarker (~> 0.21.0)

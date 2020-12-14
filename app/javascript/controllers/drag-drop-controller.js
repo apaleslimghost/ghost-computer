@@ -3,10 +3,6 @@ import { Controller } from 'stimulus'
 export default class DragDrop extends Controller {
 	static targets = ['form']
 
-	connect() {
-		console.log('lol', this.element)
-	}
-
 	showOverlay(event) {
 		event.preventDefault()
 		this.element.classList.add('dropping')

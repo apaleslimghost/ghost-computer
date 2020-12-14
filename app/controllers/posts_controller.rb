@@ -25,8 +25,18 @@ class PostsController < ApplicationController
         post = Post.from_markdown(file.read)
         post.author = current_user
         post.save!
+      else
+        ActiveStorage::Blob.create_and_upload!(
+          io: file,
+          filename: file.original_filename,
+          content_type: file.content_type
+        )
       end
     end
+  end
+
+  def asset
+    redirect_to ActiveStorage::Blob.find_by_filename!(params[:path])
   end
 
   # POST /posts
