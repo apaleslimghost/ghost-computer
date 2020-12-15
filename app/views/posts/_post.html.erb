@@ -3,11 +3,16 @@
 
 <article>
 	<h2><%= link_to post.title, post %></h2>
-	<time datetime="<%= post.posted %>"><%= time_ago_in_words post.posted %> ago</time>
-	<% post.tags.each do |tag| %>
-		<%= link_to tag.name, tag %>
+	<%= button_to pluralize(post.likes, "yeet"), like_post_path(post), form_class: 'yeet' %>
+	<time title="<%= post.posted %>" datetime="<%= post.posted %>">posted <%= time_ago_in_words post.posted %> ago</time>
+	<% if post.tags.length %>
+		<ul class="tags">
+			<% post.tags.each do |tag| %>
+				<li><%= link_to tag.name, tag
+					%></li>
+			<% end %>
+		</ul>
 	<% end %>
-	<%= button_to pluralize(post.likes, "yeet"), like_post_path(post) %>
 
 	<%= show_full ? post.html_body : post.excerpt %>
 

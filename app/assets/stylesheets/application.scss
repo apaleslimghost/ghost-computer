@@ -210,3 +210,22 @@ button, input[type=button], input[type=submit] {
 		background: #730071;
 	}
 }
+
+ul.tags {
+	display: inline;
+	margin: 0;
+	list-style-type: none;
+	list-style-position: inside;
+
+	li {
+		display: inline;
+		margin: 0;
+		&::before {
+			content: '#';
+		}
+	}
+}
+
+.yeet {
+	display: inline-block;
+}
