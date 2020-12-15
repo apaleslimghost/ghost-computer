@@ -34,9 +34,4 @@ class Post < ApplicationRecord
 
     paragraphs.map(&:to_html).join.html_safe
   end
-
-  def text_excerpt
-    document = CommonMarker.render_doc(body)
-    document.each.find { |node| node.type == :paragraph } .each.map(&:string_content).join
-  end
 end
