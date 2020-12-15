@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :posts
   post 'posts/upload', to: 'posts#upload', as: 'upload'
   post 'posts/:id/like', to: 'posts#like', as: 'like_post'
-  get 'post_assets/:path', to: 'posts#asset', constraints: { path: %r{[^\/]+} }
+  get 'post_assets/:path', to: 'posts#asset', constraints: { path: %r{[^\/]+} }, as: 'post_asset'
 
   resources :sessions, only: %i[new create]
 

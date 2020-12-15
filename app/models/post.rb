@@ -66,4 +66,8 @@ class Post < ApplicationRecord
 
     renderer.render(doc).html_safe
   end
+
+  def main_image
+    document.walk.find { |node| node.type == :image } &.url
+  end
 end
