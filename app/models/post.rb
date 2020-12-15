@@ -16,6 +16,10 @@ class ImageBlobRenderer < CommonMarker::HtmlRenderer
       super
     end
   end
+
+  def softbreak(_)
+    out("<br />\n")
+  end
 end
 
 class Post < ApplicationRecord
@@ -36,9 +40,24 @@ class Post < ApplicationRecord
       end
     end
 
+    tag_paragraph = document.each.find do |node|
+      node.type == :paragraph and node.to_commonmark =~ %r{(#blog/\S+ )+}
+    end
+
+    tags = tag_paragraph.each.flat_map do |node|
+      begin
+        node.string_content.split(' ').map { |t| t.delete_prefix('#blog/') }
+      rescue StandardError # why tho
+        []
+      end
+    end
+
+    tag_paragraph.delete
+
     Post.new(
       title: title,
-      body: document.to_commonmark
+      body: document.to_commonmark,
+      tags: Tag.tags_from_array(tags)
     )
   end
 
@@ -51,7 +70,7 @@ class Post < ApplicationRecord
   end
 
   def document
-    CommonMarker.render_doc(body)
+    CommonMarker.render_doc(body, :DEFAULT, %i[autolink strikethrough])
   end
 
   def html_body

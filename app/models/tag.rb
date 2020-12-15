@@ -6,8 +6,11 @@ class Tag < ApplicationRecord
   end
 
   def self.tags_from_string(tags_string)
-    tags_string
-      .split(/[, ]/)
+    tags_from_array tags_string.split(/[, ]/)
+  end
+
+  def self.tags_from_array(tags)
+    tags
       .map(&:strip)
       .map(&:parameterize)
       .reject(&:blank?)
