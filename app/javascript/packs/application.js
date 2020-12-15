@@ -1,7 +1,9 @@
+import Rails from "@rails/ujs"
 import turbolinks from 'turbolinks'
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 
+Rails.start()
 turbolinks.start()
 
 const application = Application.start()

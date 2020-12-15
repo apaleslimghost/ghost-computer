@@ -65,7 +65,7 @@ class PostsController < ApplicationController
 
   def like
     @post.increment!(:likes)
-    redirect_to @post
+    render js: 'Turbolinks.visit(location)'
   end
 
   # DELETE /posts/1
