@@ -40,6 +40,14 @@ a:active {
 	color: #eae;
 }
 
+strong {
+	font-weight: 900;
+}
+
+code {
+	font-family: Iosevka, Monaco, Consolas, monospace;
+}
+
 header {
 	position: fixed;
 	top: 0;
@@ -118,6 +126,37 @@ main {
 article {
 	padding-bottom: 2rem;
 	border-bottom: 1px solid white;
+
+	img:only-child {
+		display: block;
+		margin-inline: auto;
+	}
+
+	blockquote {
+		margin: 1em 0;
+		padding: 1em calc(1em - 3px);
+		border-left: 3px solid white;
+
+		p:first-child {
+			margin-top: 0;
+		}
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	ul, ol {
+		padding: 0;
+	}
+
+	li {
+		margin-left: 1em;
+	}
+
+	pre {
+		background: #370E36;
+		padding: 1em;
+	}
 }
 
 .secret-login-link {
