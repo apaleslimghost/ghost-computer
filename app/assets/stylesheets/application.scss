@@ -181,6 +181,7 @@ article {
 input:not([type=submit]), textarea {
 	font: inherit;
 	border: 0 none;
+	appearance: none;
 }
 
 input:not([type=submit]) {
@@ -198,6 +199,7 @@ textarea {
 
 button, input[type=button], input[type=submit] {
 	font: inherit;
+	appearance: none;
 	font-size: 0.9em;
 	background: #370E36;
 	border: 0 none;
