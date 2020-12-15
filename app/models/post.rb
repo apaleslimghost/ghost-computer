@@ -57,11 +57,11 @@ class Post < ApplicationRecord
     renderer.render(document).html_safe
   end
 
-  def excerpt
+  def excerpt(paragraphs: 3)
     doc = document
 
     doc.each.each_with_index do |node, index|
-      node.delete if index > 3
+      node.delete if index > paragraphs - 1
     end
 
     renderer.render(doc).html_safe
