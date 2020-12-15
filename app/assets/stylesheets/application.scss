@@ -23,7 +23,8 @@ body.dropping::after {
 
 h1, h2 {
 	font-weight: 900;
-	margin-block: 0 2rem;
+	margin-top: 0;
+	margin-bottom: 2rem;
 	line-height: 1;
 }
 
@@ -102,10 +103,11 @@ main {
 		grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
 		grid-template-rows: masonry;
 
-		margin-block: 24em 2em;
+		margin-top: 24em;
+		margin-bottom: 2em;
 
 		@media (min-width: 70rem) {
-			margin-block-start: 1em;
+			margin-top: 1em;
 			position: absolute;
 			left: 50rem;
 			right: 1rem;
@@ -115,10 +117,11 @@ main {
 
 	body:not(.home) & {
 		max-width: 40rem;
-		margin-block: 10em 2em;
+		margin-top: 10em;
+		margin-bottom: 2em;
 
 		@media (min-width: 56rem) {
-			margin-block-start: 1em;
+			margin-top: 1em;
 		}
 	}
 }
@@ -129,7 +132,8 @@ article {
 
 	img:only-child {
 		display: block;
-		margin-inline: auto;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	blockquote {
