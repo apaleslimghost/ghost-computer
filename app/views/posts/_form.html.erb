@@ -21,6 +21,11 @@
     <%= form.text_area :body %>
   </div>
 
+  <div class="field">
+      <%= label_tag :tags %>
+      <%= text_field_tag :tags, post.tags.map(&:name).join(', ') %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

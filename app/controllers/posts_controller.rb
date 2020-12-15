@@ -42,7 +42,9 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
+    @post.tags = Tag.tags_from_string(params[:tags])
     @post.author = current_user
+    puts @post.tags.map(&:name)
 
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
@@ -53,6 +55,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
+    @post.tags = Tag.tags_from_string(params[:tags])
     if @post.update(post_params)
       redirect_to @post, notice: 'Post was successfully updated.'
     else

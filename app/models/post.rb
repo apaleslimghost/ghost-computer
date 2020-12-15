@@ -20,6 +20,7 @@ end
 
 class Post < ApplicationRecord
   belongs_to :author, class_name: :User
+  has_and_belongs_to_many :tags
   after_initialize :defaults
 
   def self.from_markdown(body)
