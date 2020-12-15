@@ -35,3 +35,5 @@ gem "webpacker", "~> 5.2"
 gem "turbolinks", "~> 5.2"
 
 gem "active_storage-postgresql", "~> 0.2.1"
+
+gem "mini_magick", "~> 4.11"
