@@ -169,3 +169,44 @@ article {
 		color: inherit;
 	}
 }
+
+.field {
+	margin-bottom: 0.5rem;
+}
+
+input:not([type=submit]), textarea {
+	font: inherit;
+	border: 0 none;
+}
+
+input:not([type=submit]) {
+	background: transparent;
+	color: inherit;
+	background: #fff3;
+	border-bottom: 2px solid white;
+}
+
+textarea {
+	width: 100%;
+	min-height: 10em;
+	resize: vertical;
+}
+
+button, input[type=button], input[type=submit] {
+	font: inherit;
+	font-size: 0.9em;
+	background: #370E36;
+	border: 0 none;
+	color: white;
+	padding: 0.2em 0.4em;
+	cursor: pointer;
+	font-weight: 900;
+
+	&:hover {
+		background: #5B0D5A;
+	}
+
+	&:active {
+		background: #730071;
+	}
+}
