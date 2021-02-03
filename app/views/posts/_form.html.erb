@@ -12,11 +12,11 @@
   <% end %>
 
   <h2 class="field">
-    <%= form.text_field :title, placeholder: 'New post' %>
+    <%= form.text_field :title, placeholder: 'new post' %>
   </h2>
 
   <div class="field">
-      <%= text_field_tag :tags, post.tags.map(&:name).join(', '), placeholder: 'Tags...' %>
+      <%= text_field_tag :tags, post.tags.map(&:name).join(', '), placeholder: 'tags...' %>
   </div>
 
   <div class="field">

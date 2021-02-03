@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0.rc2'
@@ -30,10 +30,10 @@ gem 'bcrypt', '~> 3.1'
 
 gem 'commonmarker', '~> 0.21.0'
 
-gem "webpacker", "~> 5.2"
+gem 'webpacker', '~> 5.2'
 
-gem "turbolinks", "~> 5.2"
+gem 'turbolinks', '~> 5.2'
 
-gem "active_storage-postgresql", "~> 0.2.1"
+gem 'active_storage-postgresql', '~> 0.2.1'
 
-gem "mini_magick", "~> 4.11"
+gem 'mini_magick', '~> 4.11'

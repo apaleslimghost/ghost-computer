@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "nf -j Procfile.dev start"
+  },
   "dependencies": {
     "@rails/ujs": "^6.1.0",
     "@rails/webpacker": "5.2.1",
@@ -6,6 +9,7 @@
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
+    "foreman": "^3.0.1",
     "webpack-dev-server": "^3.11.0"
   }
 }
