@@ -19,20 +19,23 @@ class PostsController < ApplicationController
   def edit; end
 
   def upload
-    params[:files].each do |file|
-      case file.content_type
+    uploaded = params[:files].flat_map do |file|
+      content_type = Marcel::MimeType.for file, name: file.original_filename, declared_type: file.content_type
+      case content_type
       when %r{text/(markdown|plain)}
         post = Post.from_markdown(file.read)
         post.author = current_user
         post.save!
+        post
       else
         ActiveStorage::Blob.create_and_upload!(
           io: file,
-          filename: file.original_filename,
-          content_type: file.content_type
+          filename: file.original_filename
         )
       end
     end
+
+    render json: uploaded
   end
 
   def asset

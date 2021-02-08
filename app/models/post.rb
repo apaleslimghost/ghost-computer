@@ -44,15 +44,15 @@ class Post < ApplicationRecord
       node.type == :paragraph and node.to_commonmark =~ %r{(#blog/\S+ )+}
     end
 
-    tags = tag_paragraph.each.flat_map do |node|
-      begin
-        node.string_content.split(' ').map { |t| t.delete_prefix('#blog/') }
-      rescue StandardError # why tho
-        []
-      end
-    end
-
-    tag_paragraph.delete
+    tags = if tag_paragraph
+             tags = tag_paragraph.each.flat_map do |node|
+               node.string_content.split(' ').map { |t| t.delete_prefix('#blog/') }
+             rescue StandardError # why tho
+               []
+             end
+             tag_paragraph.delete
+             tags
+           else [] end
 
     Post.new(
       title: title,
@@ -88,6 +88,6 @@ class Post < ApplicationRecord
   end
 
   def main_image
-    document.walk.find { |node| node.type == :image } &.url
+    document.walk.find { |node| node.type == :image }&.url
   end
 end

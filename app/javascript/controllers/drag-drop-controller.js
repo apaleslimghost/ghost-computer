@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus'
 
 export default class DragDrop extends Controller {
-	static targets = ['form']
+	static targets = ['form', 'messages']
 
 	showOverlay(event) {
 		event.preventDefault()
@@ -13,6 +13,7 @@ export default class DragDrop extends Controller {
 	}
 
 	async uploadFiles(event) {
+		console.log(event)
 		try {
 			event.preventDefault()
 			this.hideOverlay()
@@ -39,6 +40,9 @@ export default class DragDrop extends Controller {
 				const message = await response.text()
 				throw new Error(message)
 			}
+
+			const updates = await response.json()
+			this.messagesTarget.innerHTML = JSON.stringify(updates, null, 2)
 		} catch (error) {
 			alert(error.message)
 		}

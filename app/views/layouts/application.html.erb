@@ -30,6 +30,9 @@
             <%= yield %>
         </main>
 
-        <%= form_with(url: upload_path, data: { 'drag-drop-target': 'form' }) if current_user %>
+        <% if current_user %>
+            <%= form_with(url: upload_path, data: { 'drag-drop-target': 'form' }) {} %>
+            <pre data-drag-drop-target="messages"></pre>
+        <% end %>
     </body>
 </html>
