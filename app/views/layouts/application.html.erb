@@ -16,6 +16,7 @@
 
         <%= javascript_pack_tag 'application' %>
         <%= stylesheet_link_tag 'application', media: 'all' %>
+        <%= auto_discovery_link_tag :rss, posts_url(:format => :rss) %>
     </head>
 
     <body class="<%= controller_name.underscore.dasherize %>"

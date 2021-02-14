@@ -1,6 +1,8 @@
 require 'uri'
 
 class ImageBlobRenderer < CommonMarker::HtmlRenderer
+  include Rails.application.routes.url_helpers
+
   def image(node)
     case node.url
     when %r{/post_assets/(.+)}
@@ -8,7 +10,7 @@ class ImageBlobRenderer < CommonMarker::HtmlRenderer
       block do
         out ApplicationController.helpers.tag(
           'img',
-          src: node.url,
+          src: url_for(blob),
           alt: node.each.map(&:string_content).join,
           width: blob.metadata[:width],
           height: blob.metadata[:height]

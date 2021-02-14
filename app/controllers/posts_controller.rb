@@ -5,6 +5,11 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.order(posted: :desc)
+
+    respond_to do |format|
+      format.html
+      format.rss { render layout: false }
+    end
   end
 
   # GET /posts/1
