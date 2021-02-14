@@ -1,11 +1,6 @@
 <header>
 	<h1><a href="/">a pale slim ghost</a></h1>
 	<p>is <a href="/about">Kara Brightwell</a></p>
-	<% if current_user %>
-		<a href='/log-out' class='secret-login-link' aria-hidden='true'>log out</a>
-	<% else %>
-		<a href='/log-in' class='secret-login-link' aria-hidden='true'>log in</a>
-	<% end %>
 
 	<%= yield(:nav_content) %>
 </header>

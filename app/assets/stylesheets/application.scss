@@ -163,11 +163,14 @@ article {
 	}
 }
 
-.secret-login-link {
+.secret-area {
 	position: fixed;
-	color: transparent;
 	bottom: 0;
 	left: 0;
+}
+
+a.secret-area {
+	color: transparent;
 
 	&:hover, &:active {
 		color: inherit;

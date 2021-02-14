@@ -33,7 +33,12 @@
 
         <% if current_user %>
             <%= form_with(url: upload_path, data: { 'drag-drop-target': 'form' }) {} %>
-            <pre data-drag-drop-target="messages"></pre>
+            <div class="secret-area">
+                <div data-drag-drop-target="messages"></div>
+                <a href='/log-out' aria-hidden='true'>log out</a>
+            </div>
+        <% else %>
+            <a href='/log-in' class='secret-area' aria-hidden='true'>log in</a>
         <% end %>
     </body>
 </html>

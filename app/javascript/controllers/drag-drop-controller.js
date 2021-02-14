@@ -13,7 +13,6 @@ export default class DragDrop extends Controller {
 	}
 
 	async uploadFiles(event) {
-		console.log(event)
 		try {
 			event.preventDefault()
 			this.hideOverlay()
@@ -42,7 +41,16 @@ export default class DragDrop extends Controller {
 			}
 
 			const updates = await response.json()
-			this.messagesTarget.innerHTML = JSON.stringify(updates, null, 2)
+
+			this.messagesTarget.innerHTML = `<ul>
+				${updates.map(update => `
+					<li>
+						${update.filename
+							? `<a href="/post_assets/${update.filename}">${update.filename}</a> uploaded`
+							: `<a href="/posts/${update.id}">${update.title}</a> created`}
+					</li>
+				`)}
+			</ul>`
 		} catch (error) {
 			alert(error.message)
 		}
