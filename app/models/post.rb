@@ -1,8 +1,10 @@
+require 'uri'
+
 class ImageBlobRenderer < CommonMarker::HtmlRenderer
   def image(node)
     case node.url
     when %r{/post_assets/(.+)}
-      blob = ActiveStorage::Blob.find_by_filename!(URI.decode(Regexp.last_match(1)))
+      blob = ActiveStorage::Blob.find_by_filename!(CGI.unescape(Regexp.last_match(1)))
       block do
         out ApplicationController.helpers.tag(
           'img',
@@ -88,6 +90,10 @@ class Post < ApplicationRecord
   end
 
   def main_image
-    document.walk.find { |node| node.type == :image }&.url
+    url = document.walk.find { |node| node.type == :image }&.url
+
+    if url
+      CGI.unescape(url).delete_prefix('/post_assets/')
+    end
   end
 end
