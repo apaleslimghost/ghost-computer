@@ -20,6 +20,12 @@ class ImageBlobRenderer < CommonMarker::HtmlRenderer
       super
     end
   end
+  
+  def header(node)
+    # min header level in articles should be h3
+    node.header_level = [6, node.header_level + 2].min
+    super
+  end
 
   def link(node)
     out('<a href="', node.url.nil? ? '' : escape_href(node.url), '"')
