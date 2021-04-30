@@ -27,6 +27,8 @@ class ImageBlobRenderer < CommonMarker::HtmlRenderer
 end
 
 class Post < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   belongs_to :author, class_name: :User
   has_and_belongs_to_many :tags
   after_initialize :defaults
@@ -94,8 +96,12 @@ class Post < ApplicationRecord
   def main_image
     url = document.walk.find { |node| node.type == :image }&.url
 
-    if url
-      CGI.unescape(url).delete_prefix('/post_assets/')
+    case url
+    when %r{/post_assets/(.+)}
+      blob = ActiveStorage::Blob.find_by_filename!(CGI.unescape(Regexp.last_match(1)))
+      url_for(blob)
+    else
+       url
     end
   end
 end

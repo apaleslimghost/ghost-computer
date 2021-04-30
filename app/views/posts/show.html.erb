@@ -4,7 +4,7 @@
 	<meta property="og:title" content="<%= @post.title %>">
 	<meta property="og:description" content="<%= strip_tags @post.excerpt(paragraphs: 2) %>">
 	<% if @post.main_image %>
-		<meta property="og:image" content="<%= post_asset_url @post.main_image %>">
+		<meta property="og:image" content="<%= @post.main_image %>">
 	<% end %>
 <% end %>
 <%= render @post, show_full: true %>
