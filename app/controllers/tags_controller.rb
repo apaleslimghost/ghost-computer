@@ -3,6 +3,9 @@ class TagsController < ApplicationController
     @tag = Tag.find_by_name!(params[:id])
     @posts = @tag.posts.order(posted: :desc)
 
-    render 'posts/index'
+    respond_to do |format|
+      format.html { render 'posts/index' }
+      format.rss { render 'posts/index', layout: false }
+    end
   end
 end

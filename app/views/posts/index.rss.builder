@@ -2,7 +2,7 @@ xml.instruct! :xml, :version => "1.0"
 xml.rss :version => "2.0" do
    xml.channel do
      xml.title "a pale slim ghost"
-     xml.description "is Kara Brightwell"
+     xml.description @tag ? "posts tagged with \"#{@tag.name}\"" : "all posts"
      xml.link root_url
 
      @posts.each do |post|

@@ -1,5 +1,8 @@
 <% if @tag %>
     <% content_for :title, "posts tagged with \"#{@tag.name}\"" %>
+    <% content_for :meta do %>
+        <%= auto_discovery_link_tag :rss, tag_url(@tag, :format => :rss), { title: "posts tagged with \"#{@tag.name}\"" } %>
+    <% end %>
     <h1>posts tagged with <%= link_to @tag.name, @tag %></h1>
 <% end %>
 
