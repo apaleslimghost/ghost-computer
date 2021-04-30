@@ -24,7 +24,7 @@ class ImageBlobRenderer < CommonMarker::HtmlRenderer
   def link(node)
     out('<a href="', node.url.nil? ? '' : escape_href(node.url), '"')
     out(' title="', escape_html(node.title), '"') if node.title && !node.title.empty?
-    out(' target="_blank"') if node.url && node.url.starts_with? 'http'
+    out(' target="_blank"') if node.url && node.url.starts_with?('http')
     out('>', :children, '</a>')
   end
 
