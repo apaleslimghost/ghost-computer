@@ -89,7 +89,7 @@ class Post < ApplicationRecord
   end
 
   def document
-    CommonMarker.render_doc(body, :DEFAULT, %i[autolink strikethrough])
+    CommonMarker.render_doc(body, :UNSAFE, %i[autolink strikethrough])
   end
 
   def html_body
