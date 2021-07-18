@@ -44,6 +44,8 @@ class Post < ApplicationRecord
 
   belongs_to :author, class_name: :User
   has_and_belongs_to_many :tags
+  has_many :mentions
+
   after_initialize :defaults
   after_save :send_webmentions
 
