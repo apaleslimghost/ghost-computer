@@ -6,5 +6,16 @@
 	<% if @post.main_image %>
 		<meta property="og:image" content="<%= @post.main_image %>">
 	<% end %>
+	<link rel="webmention" href="<%= mentions_url %>">
 <% end %>
+
 <%= render @post, show_full: true %>
+
+<% if @post.mentions.length %>
+	<aside>
+		<h4><%= pluralize(@post.mentions.length, 'response') %></h4>
+		<ul>
+			<%= render @post.mentions, layout: 'list_item' %>
+		</ul>
+	</aside>
+<% end %>

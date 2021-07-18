@@ -14,7 +14,13 @@
   - [x] bear markdown ingest
   - [x] activestorage
   - [ ] textbundle-like formats (nested folders of things, preserve paths as blobs)
-- [ ] rss 
+- [x] rss
+- [ ] webmentions
+  - [x] sending
+  - [x] receiving
+  - [x] display
+    - [ ] but nice
+  - [ ] microformats
 
 ## bugs
 - [x] fix home header styles on small screens

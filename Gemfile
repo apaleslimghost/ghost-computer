@@ -37,3 +37,7 @@ gem 'turbolinks', '~> 5.2'
 gem 'active_storage-postgresql', '~> 0.2.1'
 
 gem 'mini_magick', '~> 4.11'
+
+gem "webmention", "~> 5.0"
+
+gem "microformats", "~> 4.3"

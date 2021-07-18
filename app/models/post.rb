@@ -20,7 +20,7 @@ class ImageBlobRenderer < CommonMarker::HtmlRenderer
       super
     end
   end
-  
+
   def header(node)
     # min header level in articles should be h3
     node.header_level = [6, node.header_level + 2].min
@@ -44,7 +44,10 @@ class Post < ApplicationRecord
 
   belongs_to :author, class_name: :User
   has_and_belongs_to_many :tags
+  has_many :mentions
+
   after_initialize :defaults
+  after_save :send_webmentions
 
   def self.from_markdown(body)
     document = CommonMarker.render_doc(body)
@@ -115,6 +118,23 @@ class Post < ApplicationRecord
       url_for(blob)
     else
        url
+    end
+  end
+
+  def links
+    document.walk.filter_map do |node|
+      node.url if node.type == :link
+    end
+  end
+
+  def send_webmentions
+    client = Webmention.client(polymorphic_url(self))
+
+    links.each_with_object({}) do |url, hash|
+      hash[url] = client.send_mention(url)
+    rescue WebmentionClientError => exception
+      p exception
+      next
     end
   end
 end
