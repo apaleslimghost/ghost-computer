@@ -44,10 +44,7 @@ class Post < ApplicationRecord
 
   belongs_to :author, class_name: :User
   has_and_belongs_to_many :tags
-  has_many :mentions
-
   after_initialize :defaults
-  after_save :send_webmentions
 
   def self.from_markdown(body)
     document = CommonMarker.render_doc(body)
@@ -130,11 +127,14 @@ class Post < ApplicationRecord
   def send_webmentions
     client = Webmention.client(polymorphic_url(self))
 
-    links.each_with_object({}) do |url, hash|
+    mentions = links.each_with_object({}) do |url, hash|
       hash[url] = client.send_mention(url)
     rescue WebmentionClientError => exception
       p exception
       next
     end
+
+    puts '===sent webmentions==='
+    p mentions
   end
 end
