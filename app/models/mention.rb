@@ -31,9 +31,9 @@ class Mention < ApplicationRecord
 
   def is_like?
     if h_entry = first_h_entry
-      h_entry["properties"].has_key?("like-of") && (true || h_entry["properties"]["like-of"].one? do |like|
+      h_entry["properties"].has_key?("like-of") && h_entry["properties"]["like-of"].one? do |like|
         like["properties"]["url"][0] == post_url(post)
-      end)
+      end
     end
   end
 end
