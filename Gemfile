@@ -41,3 +41,9 @@ gem 'mini_magick', '~> 4.11'
 gem "webmention", "~> 5.0"
 
 gem "microformats", "~> 4.3"
+
+gem "activejob", "~> 6.1"
+
+gem "activejob-scheduler", "~> 0.0.1"
+
+gem "good_job", "~> 1.12"
