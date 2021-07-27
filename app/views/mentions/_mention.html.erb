@@ -1,1 +1,10 @@
-<%= link_to mention.source, mention.source, target: '_blank' %>
+<%= link_to mention.title || mention.source, mention.source, target: '_blank' %>
+
+<% if author = mention.author %>
+	by <%= link_to author["url"], target: '_blank' do %>
+		<% if author["photo"] %>
+			<img src="<%= author["photo"] %>" width="24" alt="<%= author["name"] %>" class="author">
+		<% end %>
+		<%= author["name"] %>
+	<% end %>
+<% end %>

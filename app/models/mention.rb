@@ -6,7 +6,6 @@ class Mention < ApplicationRecord
 
   # TODO async
   def fetch_source
-    puts 'FETCHING SOURCE'
     uri = URI.parse(source)
     response = Net::HTTP.get_response uri
     collection = Microformats.parse(response.body)
@@ -16,4 +15,25 @@ class Mention < ApplicationRecord
     # TODO better error handling?
     p exception
   end
+
+  def first_h_entry
+    return unless data
+
+    data["items"].find do |entry|
+      entry["type"].include? "h-entry"
+    end
+  end
+
+  def title
+    if h_entry = first_h_entry
+      h_entry["properties"]["name"][0]
+    end
+  end
+
+  def author
+    if h_entry = first_h_entry
+      h_entry["properties"]["author"][0]["properties"].transform_values(&:first)
+    end
+  end
+
 end
