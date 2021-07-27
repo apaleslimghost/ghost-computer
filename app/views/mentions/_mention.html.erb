@@ -1,10 +1,23 @@
-<%= link_to mention.title || mention.source, mention.source, target: '_blank' %>
-
-<% if author = mention.author %>
-	by <%= link_to author["url"], target: '_blank' do %>
-		<% if author["photo"] %>
-			<img src="<%= author["photo"] %>" width="24" alt="<%= author["name"] %>" class="author">
+<li>
+	<%= link_to mention.source, target: '_blank' do %>
+		<% if mention.is_like? %>
+			❤︎ liked
+		<% else %>
+			<%= mention.title || mention.source %>
 		<% end %>
-		<%= author["name"] %>
 	<% end %>
-<% end %>
+
+	<% if author = mention.author %>
+		by <%= link_to author["url"], target: '_blank' do %>
+			<% if author["photo"] %>
+				<img src="<%= author["photo"] %>" width="24" alt="<%= author["name"] %>" class="author">
+			<% end %>
+			<%= author["name"] %>
+		<% end %>
+	<% end %>
+
+	<% if mention.is_like? && mention.title %>
+		<% if mention.author %>who said<% end %>
+		"<%= mention.title %>"
+	<% end %>
+</li>

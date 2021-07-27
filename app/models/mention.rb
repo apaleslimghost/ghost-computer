@@ -1,4 +1,5 @@
 class Mention < ApplicationRecord
+  include Rails.application.routes.url_helpers
   belongs_to :post
 
   after_create :fetch_source
@@ -28,4 +29,11 @@ class Mention < ApplicationRecord
     end
   end
 
+  def is_like?
+    if h_entry = first_h_entry
+      h_entry["properties"].has_key?("like-of") && (true || h_entry["properties"]["like-of"].one? do |like|
+        like["properties"]["url"][0] == post_url(post)
+      end)
+    end
+  end
 end
