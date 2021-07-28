@@ -6,6 +6,11 @@
 	<%= button_to pluralize(post.likes, "yeet"), like_post_path(post), form_class: 'yeet', remote: true %>
 	<time class="dt-published" title="<%= post.posted %>" datetime="<%= post.posted %>">posted <%= time_ago_in_words post.posted %> ago</time>
 
+	<address class="p-author h-card">
+		by
+		<%= link_to 'Kara Brightwell', root_url, class: 'u-url p-name' %>
+	</address>
+
 	<% if post.tags.length %>
 		<ul class="tags">
 			<% post.tags.each do |tag| %>
