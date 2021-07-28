@@ -15,4 +15,6 @@ Rails.application.routes.draw do
 
   get 'log-in', to: 'sessions#new', as: 'login'
   get 'log-out', to: 'sessions#destroy', as: 'logout'
+
+  mount GoodJob::Engine => 'jobs'
 end

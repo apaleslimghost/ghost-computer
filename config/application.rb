@@ -14,6 +14,7 @@ require 'action_view/railtie'
 # require "action_cable/engine"
 require 'sprockets/railtie'
 require 'rails/test_unit/railtie'
+require 'good_job/engine'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -35,5 +36,6 @@ module GhostComputer
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.active_storage.service = :postgres
+    config.active_job.queue_adapter = :good_job
   end
 end
