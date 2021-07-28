@@ -1,0 +1,4 @@
+<%= form_with url: microformats_path do |form| %>
+	<%= form.text_field :source, placeholder: 'url' %>
+	<%= form.submit 'scrape microformats' %>
+<% end %>

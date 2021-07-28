@@ -12,11 +12,8 @@ class ScrapeMentionJob < ApplicationJob
   end
 
   def perform(mention)
-    uri = URI.parse(mention.source)
-    response = Net::HTTP.get_response uri
-    collection = Microformats.parse(response.body)
-
-    mention.update(data: collection.to_hash)
+    scraper = Scraper.new(mention.source)
+    mention.update(data: scraper.microformats)
   rescue StandardError => exception
     # TODO better error handling?
     puts "ERROR scraping mention from #{mention.source}:"

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :tags, only: [:show]
   resources :mentions, only: [:create]
+  resources :microformats, only: [:new, :create]
 
   post 'posts/upload', to: 'posts#upload', as: 'upload'
   post 'posts/:id/like', to: 'posts#like', as: 'like_post'
