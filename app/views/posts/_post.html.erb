@@ -1,20 +1,22 @@
 <% post ||= @post %>
 <% show_full ||= false %>
 
-<article>
-	<h2><%= link_to post.title, post %></h2>
+<article class="h-entry">
+	<h2 class="p-name"><%= link_to post.title, post %></h2>
 	<%= button_to pluralize(post.likes, "yeet"), like_post_path(post), form_class: 'yeet', remote: true %>
-	<time title="<%= post.posted %>" datetime="<%= post.posted %>">posted <%= time_ago_in_words post.posted %> ago</time>
+	<time class="dt-published" title="<%= post.posted %>" datetime="<%= post.posted %>">posted <%= time_ago_in_words post.posted %> ago</time>
+
 	<% if post.tags.length %>
 		<ul class="tags">
 			<% post.tags.each do |tag| %>
-				<li><%= link_to tag.name, tag
-					%></li>
+				<li><%= link_to tag.name, tag, class: 'p-category' %></li>
 			<% end %>
 		</ul>
 	<% end %>
 
-	<%= show_full ? post.html_body : post.excerpt %>
+	<div class="e-content">
+		<%= show_full ? post.html_body : post.excerpt %>
+	</div>
 
 	<% if !show_full && post.html_body != post.excerpt %>
 		<%= link_to "read more…", post %>
