@@ -37,5 +37,6 @@ module GhostComputer
     config.generators.system_tests = nil
     config.active_storage.service = :postgres
     config.active_job.queue_adapter = :good_job
+    config.good_job.execution_mode = :async_server
   end
 end
