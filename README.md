@@ -19,10 +19,17 @@
   - [x] sending
   - [x] receiving
   - [x] display
-    - [ ] but nice
-  - [ ] microformats
+    - [x] but nice
+  - [x] microformats
+    - [ ] more microformats?
+  - [ ] bridgy publishing
+- [ ] notes (without title)
+- [ ] pull in youtube videos, soundcloud releases, spotify releases
+- [ ] featured video/live broadcast
+- [ ] pagination/lazy loading
 
 ## bugs
 - [x] fix home header styles on small screens
 - [x] post date time
-- [ ] safari ugh
+- [x] safari ugh
+- [ ] mobile layout (static position)
