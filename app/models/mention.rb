@@ -36,4 +36,10 @@ class Mention < ApplicationRecord
       end
     end
   end
+
+  def is_repost?
+    if h_entry = first_h_entry
+      h_entry["properties"].has_key?("repost-of") && h_entry["properties"]["repost-of"].include?(post_url(post))
+    end
+  end
 end
