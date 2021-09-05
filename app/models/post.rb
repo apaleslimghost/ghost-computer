@@ -132,7 +132,7 @@ class Post < ApplicationRecord
 
     mentions = links.each_with_object({}) do |url, hash|
       hash[url] = client.send_mention(url)
-    rescue WebmentionClientError => exception
+    rescue Webmention::WebmentionClientError => exception
       p exception
       next
     end
