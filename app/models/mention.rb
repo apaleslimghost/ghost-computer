@@ -34,7 +34,7 @@ class Mention < ApplicationRecord
       h_entry["properties"].has_key?("like-of") && h_entry["properties"]["like-of"].one? do |like|
         if like.is_a? String
            like == post_url(post)
-        elsif like.is_a? Hash && like.has_key?("properties")
+        elsif like.is_a?(Hash) && like.has_key?("properties")
           like["properties"]["url"][0] == post_url(post)
         end
       end
