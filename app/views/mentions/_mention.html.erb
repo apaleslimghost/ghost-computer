@@ -18,7 +18,7 @@
 		<% end %>
 	<% end %>
 
-	<% if (mention.is_like? || mention.is_repost?) && mention.title %>
+	<% if (mention.is_like? || mention.is_repost?) && !mention.title.empty? %>
 		<% if mention.author %>who said<% end %>
 		"<%= mention.title %>"
 	<% end %>
