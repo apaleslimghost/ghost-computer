@@ -19,13 +19,13 @@ class Mention < ApplicationRecord
 
   def title
     if h_entry = first_h_entry
-      h_entry["properties"]["name"][0]
+      h_entry.dig("properties", "name", 0)
     end
   end
 
   def author
     if h_entry = first_h_entry
-      h_entry["properties"]["author"][0]["properties"].transform_values(&:first)
+      h_entry.dig("properties", "author", 0, "properties")&.transform_values(&:first)
     end
   end
 
