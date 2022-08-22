@@ -3,13 +3,18 @@
     "start": "nf -j Procfile.dev start"
   },
   "dependencies": {
-    "@rails/ujs": "^6.1.0",
-    "@rails/webpacker": "5.2.1",
-    "stimulus": "^2.0.0",
-    "turbolinks": "^5.2.0"
+    "@hotwired/stimulus": "^3.1.0",
+    "@hotwired/turbo": "^7.1.0",
+    "stimulus-vite-helpers": "^3.0.0"
+  },
+  "volta": {
+    "node": "16.17.0",
+    "npm": "8.18.0"
   },
   "devDependencies": {
-    "foreman": "^3.0.1",
-    "webpack-dev-server": "^3.11.0"
+    "sass": "^1.54.5",
+    "vite": "^3.0.9",
+    "vite-plugin-ruby": "^3.1.2",
+    "vite-plugin-stimulus-hmr": "^3.0.0"
   }
 }

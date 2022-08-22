@@ -13,8 +13,10 @@
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
 
-        <%= javascript_pack_tag 'application' %>
-        <%= stylesheet_link_tag 'application', media: 'all' %>
+        <%= vite_javascript_tag 'application' %>
+        <%= vite_stylesheet_tag 'application.scss', media: 'all' %>
+        <%= vite_client_tag %>
+
         <%= auto_discovery_link_tag :rss, posts_url(:format => :rss), { title: "all posts" } %>
         <%= content_for :meta %>
     </head>

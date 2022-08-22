@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 
 export default class DragDrop extends Controller {
 	static targets = ['form', 'messages']
