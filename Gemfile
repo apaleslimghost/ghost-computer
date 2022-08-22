@@ -12,12 +12,12 @@ group :development do
 end
 
 gem 'bcrypt', '~> 3.1'
-gem 'commonmarker', '~> 0.21.0'
-gem 'active_storage-postgresql', '~> 0.2.1'
+gem 'commonmarker', '~> 0.23'
+gem 'active_storage-postgresql', '~> 0.3'
 gem 'mini_magick', '~> 4.11'
 gem "webmention", "~> 6.0"
 gem "microformats", "~> 4.3"
 gem "activejob", "~> 7.0"
 gem "activejob-scheduler", "~> 0.0.1"
-gem "good_job", "~> 1.12"
+gem "good_job", "~> 3"
 gem "vite_rails", "~> 3.0"
