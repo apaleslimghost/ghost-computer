@@ -128,10 +128,8 @@ class Post < ApplicationRecord
   end
 
   def send_webmentions
-    client = Webmention.client(polymorphic_url(self))
-
     mentions = links.each_with_object({}) do |url, hash|
-      hash[url] = client.send_mention(url)
+      hash[url] = Webmention.send_mention(polymorphic_url(self), url)
     rescue Webmention::WebmentionClientError => exception
       p exception
       next
