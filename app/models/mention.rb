@@ -2,10 +2,10 @@ class Mention < ApplicationRecord
   include Rails.application.routes.url_helpers
   belongs_to :post
 
-  after_create :fetch_source
-  after_update :fetch_source, if: :saved_change_to_source?
+  after_create :fetch_source!
+  after_update :fetch_source!, if: :saved_change_to_source?
 
-  def fetch_source
+  def fetch_source!
     ScrapeMentionJob.perform_later self
   end
 

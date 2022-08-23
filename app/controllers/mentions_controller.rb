@@ -7,10 +7,16 @@ class MentionsController < ApplicationController
 
 		return unless route_params[:controller] == 'posts' && route_params[:action] == 'show'
 
-		Mention.create(
-			post: Post.find(route_params[:id]),
-			source: params[:source]
-		)
+		post = Post.find!(route_params[:id])
+
+		if mention = Mention.find_by(post: post, source: params[:source])
+			mention.fetch_source!
+		else
+			Mention.create(
+				post: post,
+				source: params[:source]
+			)
+		end
 
 		head 201
 	end
