@@ -9,13 +9,8 @@ class MentionsController < ApplicationController
 
 		post = Post.find!(route_params[:id])
 
-		if mention = Mention.find_by(post: post, source: params[:source])
+		Mention.find_or_create_by(post: post, source: params[:source]) do |mention|
 			mention.fetch_source!
-		else
-			Mention.create(
-				post: post,
-				source: params[:source]
-			)
 		end
 
 		head 201
