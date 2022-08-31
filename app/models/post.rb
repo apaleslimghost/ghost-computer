@@ -133,4 +133,8 @@ class Post < ApplicationRecord
     puts '===sent webmentions==='
     p results
   end
+
+  def is_note?
+    !title || title.empty?
+  end
 end

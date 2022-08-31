@@ -23,7 +23,7 @@
   - [x] microformats
     - [ ] more microformats?
   - [ ] bridgy publishing
-- [ ] notes (without title)
+- [x] notes (without title)
 - [ ] pull in youtube videos, soundcloud releases, spotify releases
 - [ ] featured video/live broadcast
 - [ ] pagination/lazy loading

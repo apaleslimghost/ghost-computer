@@ -1,29 +1,45 @@
 <% post ||= @post %>
-<% show_full ||= false %>
+<% show_full ||= post.is_note? %>
 
 <article class="h-entry">
-	<h2 class="p-name"><%= link_to post.title, post %></h2>
-	<%= button_to pluralize(post.likes, "yeet"), like_post_path(post), form_class: 'yeet', remote: true %>
-	<time class="dt-published" title="<%= post.posted %>" datetime="<%= post.posted %>">posted <%= time_ago_in_words post.posted %> ago</time>
+	<% heading = capture do %>
+		<h2 class="p-name"><%= link_to post.title, post %></h2>
+		<%= button_to pluralize(post.likes, "yeet"), like_post_path(post), form_class: 'yeet', remote: true %>
+			<time class="dt-published" title="<%= post.posted %>" datetime="<%= post.posted %>">
+				posted <%= link_to post do %>
+					<%= time_ago_in_words post.posted %> ago
+				<% end %>
+			</time>
 
-	<address class="p-author h-card">
-		by
-		<%= link_to 'Kara Brightwell', root_url, class: 'u-url p-name' %>
-	</address>
+		<address class="p-author h-card">
+			by
+			<%= link_to 'Kara Brightwell', root_url, class: 'u-url p-name' %>
+		</address>
 
-	<% if post.tags.length %>
-		<ul class="tags">
-			<% post.tags.each do |tag| %>
-				<li><%= link_to tag.name, tag, class: 'p-category' %></li>
-			<% end %>
-		</ul>
+		<% if post.tags.length %>
+			<ul class="tags">
+				<% post.tags.each do |tag| %>
+					<li><%= link_to tag.name, tag, class: 'p-category' %></li>
+				<% end %>
+			</ul>
+		<% end %>
 	<% end %>
 
-	<div class="e-content">
-		<%= show_full ? post.html_body : post.excerpt %>
-	</div>
+	<% content = capture do %>
+		<div class="e-content">
+			<%= show_full ? post.html_body : post.excerpt %>
+		</div>
 
-	<% if !show_full && post.html_body != post.excerpt %>
-		<%= link_to "read more…", post %>
+		<% if !show_full && post.html_body != post.excerpt %>
+			<%= link_to "read more…", post %>
+		<% end %>
+	<% end %>
+
+	<% if post.is_note? %>
+		<%= content %>
+		<%= heading %>
+	<% else %>
+		<%= heading %>
+		<%= content %>
 	<% end %>
 </article>
