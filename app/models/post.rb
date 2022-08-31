@@ -128,7 +128,7 @@ class Post < ApplicationRecord
   end
 
   def send_webmentions
-    results = Webmention.send_mentions(polymorphic_url(self), links)
+    results = Webmention.send_webmentions(polymorphic_url(self), links)
 
     puts '===sent webmentions==='
     p results
