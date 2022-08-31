@@ -11,11 +11,10 @@
 
 <%= render @post, show_full: true %>
 
-<% if @post.mentions.length %>
-	<aside>
-		<h4><%= pluralize(@post.mentions.length, 'response') %></h4>
-		<ul>
-			<%= render @post.mentions, layout: 'list_item' %>
-		</ul>
-	</aside>
-<% end %>
+<aside>
+	<h4 id="responses"><%= pluralize(@post.mentions.length, 'response') %></h4>
+	<ul>
+		<%= render @post.mentions, layout: 'list_item' %>
+	</ul>
+	<h6>you can respond to this post by having your blog send my blog a <a href="https://indieweb.org/Webmention" target="_blank" rel="noopener">webmention</a>, or by <a href="https://brid.gy/" target="_blank" rel="noopener">tweeting about it</a>.</h6>
+</aside>

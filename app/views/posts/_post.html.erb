@@ -13,8 +13,13 @@
 
 		<address class="p-author h-card">
 			by
-			<%= link_to 'Kara Brightwell', root_url, class: 'u-url p-name' %>
+			<%= link_to 'Kara Brightwell', root_url, class: 'u-url p-name' %>.
 		</address>
+
+		<% if post.mentions.length > 0 %>
+			<%= link_to pluralize(post.mentions.length, 'response'), post_path(post, anchor: "responses") %>.
+		<% end %>
+
 
 		<% if post.tags.length %>
 			<ul class="tags">
