@@ -1,4 +1,15 @@
-# todo
+# [ghost.computer](https://ghost.computer)
+
+## getting it running
+
+- `brew services start postgresql`
+- `bundle`
+- `npm install`
+- `rails db:create`
+- `rails db:migrate`
+- `rails s`
+
+## to do
 
 - [x] posts
   - [x] markdown
