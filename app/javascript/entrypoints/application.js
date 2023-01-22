@@ -1,4 +1,4 @@
-import Turbo from '@hotwired/turbo'
+import * as Turbo from '@hotwired/turbo'
 import { Application } from "@hotwired/stimulus"
 import { registerControllers } from 'stimulus-vite-helpers'
 
