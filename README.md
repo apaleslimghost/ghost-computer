@@ -7,6 +7,9 @@
 - `npm install`
 - `rails db:create`
 - `rails db:migrate`
+- create a new user in the REPL:
+  - `rails c`
+  - `User.create(username: 'apaleslimghost', password: 'hunter2')`
 - `rails s`
 
 ## to do
