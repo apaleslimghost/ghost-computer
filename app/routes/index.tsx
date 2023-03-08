@@ -1,3 +1,6 @@
+import { typedjson, useTypedLoaderData } from 'remix-typedjson'
+import { Post } from "~/components/post/post"
+import db from "~/lib/db.server"
 
 export const handle = {
   navContent: <section>
@@ -19,35 +22,20 @@ export const handle = {
   </section>
 }
 
+export async function loader() {
+  const posts = await db.posts.findMany({
+    orderBy: {
+      posted: 'desc'
+    }
+  })
+
+  return typedjson({ posts })
+}
+
 export default function Index() {
-  return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
+  const { posts } = useTypedLoaderData<typeof loader>()
+
+  return <>
+    {posts.map(post => <Post key={post.id.toString()} post={post} />)}
+  </>
 }
