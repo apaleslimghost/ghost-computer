@@ -40,3 +40,7 @@ node_modules
 *.local
 
 .env
+
+/.cache
+/build
+/public/build

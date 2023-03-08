@@ -47,3 +47,11 @@
 - [x] post date time
 - [x] safari ugh
 - [ ] mobile layout (static position)
+
+# remix rewrite
+
+- [ ] rewrite templates in jsx
+- [ ] rewrite stimulus controllers in react
+- [ ] how to do authentication
+  - [ ] recreate how bcrypt does password signature
+- [ ] you basically need to recreate activestorage and activestorage-postgres lol
