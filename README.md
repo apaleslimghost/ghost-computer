@@ -55,3 +55,4 @@
 - [ ] how to do authentication
   - [ ] recreate how bcrypt does password signature
 - [ ] you basically need to recreate activestorage and activestorage-postgres lol
+- [ ] webmentions, microformats, activejob etc
