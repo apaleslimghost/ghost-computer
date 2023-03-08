@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { MetaFunction, LinksFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -10,9 +10,14 @@ import {
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "a pale slim ghost",
   viewport: "width=device-width,initial-scale=1",
 });
+
+export const links: LinksFunction = () => ([
+  { rel: 'icon', href: '/favicon.svg' },
+  // TODO rss
+])
 
 export default function App() {
   return (
@@ -22,7 +27,10 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        {/* <Nav /> */}
+        <main>
+          <Outlet />
+        </main>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
