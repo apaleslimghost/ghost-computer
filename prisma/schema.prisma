@@ -62,7 +62,7 @@ model Mention {
   source     String?  @db.VarChar
   data       Json?
   created_at DateTime @db.Timestamp(6)
-  updated_at DateTime @db.Timestamp(6)
+  updated_at DateTime @updatedAt
   posts      Post     @relation(fields: [post_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_4308a5edca")
 
   @@index([post_id], map: "index_mentions_on_post_id")
@@ -75,7 +75,7 @@ model Post {
   posted     DateTime? @db.Timestamp(6)
   body       String?
   created_at DateTime  @db.Timestamp(6)
-  updated_at DateTime  @db.Timestamp(6)
+  updated_at DateTime  @updatedAt
   author_id  BigInt
   likes      Int?      @default(0)
   mentions   Mention[]
@@ -99,7 +99,7 @@ model Tag {
   id         BigInt   @id @default(autoincrement())
   name       String?  @unique(map: "index_tags_on_name") @db.VarChar
   created_at DateTime @db.Timestamp(6)
-  updated_at DateTime @db.Timestamp(6)
+  updated_at DateTime @updatedAt
 
   @@map("tags")
 }
@@ -109,7 +109,7 @@ model User {
   username        String?  @db.VarChar
   password_digest String?  @db.VarChar
   created_at      DateTime @db.Timestamp(6)
-  updated_at      DateTime @db.Timestamp(6)
+  updated_at      DateTime @updatedAt
   posts           Post[]
 
   @@map("users")
