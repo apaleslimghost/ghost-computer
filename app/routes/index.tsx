@@ -1,5 +1,5 @@
 import { typedjson, useTypedLoaderData } from 'remix-typedjson'
-import { Post } from "~/components/post/post"
+import { PostView } from "~/components/post/post"
 import db from "~/lib/db.server"
 
 export const handle = {
@@ -26,7 +26,7 @@ export const handle = {
 }
 
 export async function loader() {
-  const posts = await db.posts.findMany({
+  const posts = await db.post.findMany({
     orderBy: {
       posted: 'desc'
     }
@@ -39,6 +39,6 @@ export default function Index() {
   const { posts } = useTypedLoaderData<typeof loader>()
 
   return <>
-    {posts.map(post => <Post key={post.id.toString()} post={post} />)}
+    {posts.map(post => <PostView key={post.id.toString()} post={post} />)}
   </>
 }

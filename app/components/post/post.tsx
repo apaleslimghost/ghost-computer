@@ -1,9 +1,9 @@
-import { posts } from "@prisma/client";
+import { Post } from "@prisma/client";
 import { Link } from "@remix-run/react";
 import { FC } from "react";
 import { DateTime } from 'luxon'
 
-export const Post: FC<{ post: posts }> = ({ post }) => {
+export const PostView: FC<{ post: Post }> = ({ post }) => {
 	const posted = DateTime.fromJSDate(post.posted!)
 
 	return <article className="h-entry">

@@ -7,145 +7,110 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model active_storage_attachments {
-  id                   BigInt               @id @default(autoincrement())
-  name                 String               @db.VarChar
-  record_type          String               @db.VarChar
-  record_id            BigInt
-  blob_id              BigInt
-  created_at           DateTime             @db.Timestamp(6)
-  active_storage_blobs active_storage_blobs @relation(fields: [blob_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_c3b3935057")
+// model active_storage_attachments {
+//   id                   BigInt               @id @default(autoincrement())
+//   name                 String               @db.VarChar
+//   record_type          String               @db.VarChar
+//   record_id            BigInt
+//   blob_id              BigInt
+//   created_at           DateTime             @db.Timestamp(6)
+//   active_storage_blobs active_storage_blobs @relation(fields: [blob_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_c3b3935057")
 
-  @@unique([record_type, record_id, name, blob_id], map: "index_active_storage_attachments_uniqueness")
-  @@index([blob_id], map: "index_active_storage_attachments_on_blob_id")
-}
+//   @@unique([record_type, record_id, name, blob_id], map: "index_active_storage_attachments_uniqueness")
+//   @@index([blob_id], map: "index_active_storage_attachments_on_blob_id")
+// }
 
-model active_storage_blobs {
-  id                             BigInt                           @id @default(autoincrement())
-  key                            String                           @unique(map: "index_active_storage_blobs_on_key") @db.VarChar
-  filename                       String                           @db.VarChar
-  content_type                   String?                          @db.VarChar
-  metadata                       String?
-  service_name                   String                           @db.VarChar
-  byte_size                      BigInt
-  checksum                       String                           @db.VarChar
-  created_at                     DateTime                         @db.Timestamp(6)
-  active_storage_attachments     active_storage_attachments[]
-  active_storage_variant_records active_storage_variant_records[]
-}
+// model active_storage_blobs {
+//   id                             BigInt                           @id @default(autoincrement())
+//   key                            String                           @unique(map: "index_active_storage_blobs_on_key") @db.VarChar
+//   filename                       String                           @db.VarChar
+//   content_type                   String?                          @db.VarChar
+//   metadata                       String?
+//   service_name                   String                           @db.VarChar
+//   byte_size                      BigInt
+//   checksum                       String                           @db.VarChar
+//   created_at                     DateTime                         @db.Timestamp(6)
+//   active_storage_attachments     active_storage_attachments[]
+//   active_storage_variant_records active_storage_variant_records[]
+// }
 
-model active_storage_postgresql_files {
-  id  BigInt  @id @default(autoincrement())
-  oid Int?    @db.Oid
-  key String? @unique(map: "index_active_storage_postgresql_files_on_key") @db.VarChar
-}
+// model active_storage_postgresql_files {
+//   id  BigInt  @id @default(autoincrement())
+//   oid Int?    @db.Oid
+//   key String? @unique(map: "index_active_storage_postgresql_files_on_key") @db.VarChar
+// }
 
-model active_storage_variant_records {
-  id                   BigInt               @id @default(autoincrement())
-  blob_id              BigInt
-  variation_digest     String               @db.VarChar
-  active_storage_blobs active_storage_blobs @relation(fields: [blob_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_993965df05")
+// model active_storage_variant_records {
+//   id                   BigInt               @id @default(autoincrement())
+//   blob_id              BigInt
+//   variation_digest     String               @db.VarChar
+//   active_storage_blobs active_storage_blobs @relation(fields: [blob_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_993965df05")
 
-  @@unique([blob_id, variation_digest], map: "index_active_storage_variant_records_uniqueness")
-}
+//   @@unique([blob_id, variation_digest], map: "index_active_storage_variant_records_uniqueness")
+// }
 
-model ar_internal_metadata {
-  key        String   @id @db.VarChar
-  value      String?  @db.VarChar
-  created_at DateTime @db.Timestamp(6)
-  updated_at DateTime @db.Timestamp(6)
-}
+// model ar_internal_metadata {
+//   key        String   @id @db.VarChar
+//   value      String?  @db.VarChar
+//   created_at DateTime @db.Timestamp(6)
+//   updated_at DateTime @db.Timestamp(6)
+// }
 
-model good_job_processes {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  created_at DateTime @db.Timestamp(6)
-  updated_at DateTime @db.Timestamp(6)
-  state      Json?
-}
-
-model good_job_settings {
-  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  created_at DateTime @db.Timestamp(6)
-  updated_at DateTime @db.Timestamp(6)
-  key        String?  @unique(map: "index_good_job_settings_on_key")
-  value      Json?
-}
-
-model good_jobs {
-  id                  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  queue_name          String?
-  priority            Int?
-  serialized_params   Json?
-  scheduled_at        DateTime? @db.Timestamp(6)
-  performed_at        DateTime? @db.Timestamp(6)
-  finished_at         DateTime? @db.Timestamp(6)
-  error               String?
-  created_at          DateTime  @db.Timestamp(6)
-  updated_at          DateTime  @db.Timestamp(6)
-  active_job_id       String?   @db.Uuid
-  concurrency_key     String?
-  cron_key            String?
-  retried_good_job_id String?   @db.Uuid
-  cron_at             DateTime? @db.Timestamp(6)
-
-  @@unique([cron_key, cron_at], map: "index_good_jobs_on_cron_key_and_cron_at")
-  @@index([active_job_id], map: "index_good_jobs_on_active_job_id")
-  @@index([active_job_id, created_at], map: "index_good_jobs_on_active_job_id_and_created_at")
-  @@index([cron_key, created_at], map: "index_good_jobs_on_cron_key_and_created_at")
-}
-
-model mentions {
+model Mention {
   id         BigInt   @id @default(autoincrement())
   post_id    BigInt
   source     String?  @db.VarChar
   data       Json?
   created_at DateTime @db.Timestamp(6)
   updated_at DateTime @db.Timestamp(6)
-  posts      posts    @relation(fields: [post_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_4308a5edca")
+  posts      Post     @relation(fields: [post_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_4308a5edca")
 
   @@index([post_id], map: "index_mentions_on_post_id")
+  @@map("mentions")
 }
 
-model posts {
-  id         BigInt     @id @default(autoincrement())
-  title      String?    @db.VarChar
-  posted     DateTime?  @db.Timestamp(6)
+model Post {
+  id         BigInt    @id @default(autoincrement())
+  title      String?   @db.VarChar
+  posted     DateTime? @db.Timestamp(6)
   body       String?
-  created_at DateTime   @db.Timestamp(6)
-  updated_at DateTime   @db.Timestamp(6)
+  created_at DateTime  @db.Timestamp(6)
+  updated_at DateTime  @db.Timestamp(6)
   author_id  BigInt
-  likes      Int?       @default(0)
-  mentions   mentions[]
-  users      users      @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_04d13ef8c7")
+  likes      Int?      @default(0)
+  mentions   Mention[]
+  users      User      @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_04d13ef8c7")
 
   @@index([author_id], map: "index_posts_on_author_id")
+  @@map("posts")
 }
 
-model posts_tags {
+model PostTag {
   post_id BigInt
   tag_id  BigInt
 
   @@id([post_id, tag_id])
   @@index([post_id], map: "index_posts_tags_on_post_id")
   @@index([tag_id], map: "index_posts_tags_on_tag_id")
+  @@map("posts_tags")
 }
 
-model schema_migrations {
-  version String @id @db.VarChar
-}
-
-model tags {
+model Tag {
   id         BigInt   @id @default(autoincrement())
   name       String?  @unique(map: "index_tags_on_name") @db.VarChar
   created_at DateTime @db.Timestamp(6)
   updated_at DateTime @db.Timestamp(6)
+
+  @@map("tags")
 }
 
-model users {
+model User {
   id              BigInt   @id @default(autoincrement())
   username        String?  @db.VarChar
   password_digest String?  @db.VarChar
   created_at      DateTime @db.Timestamp(6)
   updated_at      DateTime @db.Timestamp(6)
-  posts           posts[]
+  posts           Post[]
+
+  @@map("users")
 }
