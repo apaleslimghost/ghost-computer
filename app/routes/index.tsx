@@ -9,10 +9,10 @@ export const handle = {
       she'll haunt you with:
       <ul>
         <li>
-          <a href="https://open.spotify.com/artist/3TzsOJwiMZHmnnRFAdfuUH?si=FJp1sgIJQ4GX8ZHOArHH0g" target="blank" rel="noopener">big kicks & rich noises</a>
+          <a href="https://asmpts.com" target="blank" rel="noopener">big kicks & rich noises</a>
         </li>
         <li>
-          <a href="https://www.youtube.com/channel/UCuwdW47KpcunIOlFaB63KbQ" target="blank" rel="noopener">live performed bullshit noise</a>
+          <a href="https://paleslimghost.store" target="blank" rel="noopener">synthesisers and synthesiser accessories</a>
         </li>
         <li>
           <a href="https://github.com/apaleslimghost" target="blank" rel="noopener">error messages that tell you how they can be fixed</a>
