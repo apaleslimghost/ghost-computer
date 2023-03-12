@@ -10,7 +10,8 @@ import {
   useMatches,
 } from "@remix-run/react";
 import { ReactNode } from "react";
-import { z } from "zod";
+
+import styles from './styles/main.css';
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -20,6 +21,7 @@ export const meta: MetaFunction = () => ({
 
 export const links: LinksFunction = () => ([
   { rel: 'icon', href: '/favicon.svg' },
+  { rel: 'stylesheet', href: styles },
   // TODO rss
 ])
 
