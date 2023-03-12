@@ -18,7 +18,7 @@ export const handle = {
           <a href="https://github.com/apaleslimghost" target="blank" rel="noopener">error messages that tell you how they can be fixed</a>
         </li>
         <li>
-          <a href="https://mastodon.social/apaleslimghost" target="blank" rel="me noopener">shitposts</a>
+          <a href="https://cathode.church/@apaleslimghost" target="blank" rel="me noopener">shitposts</a>
         </li>
       </ul>
     </section>,
