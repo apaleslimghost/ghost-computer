@@ -9,7 +9,7 @@ import {
   ScrollRestoration,
   useMatches,
 } from "@remix-run/react";
-import { ReactNode } from "react";
+import { FC, ReactNode } from "react";
 
 import styles from './styles/main.css';
 
@@ -25,14 +25,16 @@ export const links: LinksFunction = () => ([
   // TODO rss
 ])
 
-const Nav = ({ children }: { children: ReactNode }) => <header>
+type NavProps = { className?: string, children: ReactNode }
+
+const Nav: FC<NavProps> = ({ className, children }) => <header className={className}>
   <h1><a href="/">a pale slim ghost</a></h1>
   <p>is <a href="/about">Kara Brightwell</a></p>
 
   {children}
 </header>
 
-const getNavContent = (match: RouteMatch): ReactNode => match.handle?.navContent ?? null
+const getNavContent = (match: RouteMatch): NavProps => match.handle?.navContent ?? {}
 
 export default function App() {
   const matches = useMatches()
@@ -47,7 +49,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Nav>{navContent}</Nav>
+        <Nav {...navContent} />
         <main>
           <Outlet />
         </main>

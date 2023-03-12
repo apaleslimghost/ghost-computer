@@ -54,22 +54,21 @@ header {
 	top: 0;
 	padding-bottom: 4em;
 	background: linear-gradient(to bottom, #AA076B 80%, #aa076b00);
+
 	height: 6em;
 
 	h1 {
 		font-size: calc(1rem + 8vw);
-
-		body.home & {
-			font-size: calc(2.4rem + 8vw);
-		}
 	}
 
-	body.home & {
+	&.home {
 		height: 24rem;
-	}
 
-	@media (min-width: 70rem) {
-		body.home & {
+		h1 {
+				font-size: calc(2.4rem + 8vw);
+		}
+
+		@media (min-width: 70rem) {
 			max-width: 50rem;
 
 			h1 {
@@ -79,7 +78,7 @@ header {
 	}
 
 	@media (min-width: 56rem) {
-		body:not(.home) & {
+		&:not(.home) {
 			top: auto;
 			background: none;
 			padding: 0;
