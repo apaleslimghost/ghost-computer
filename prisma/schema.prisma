@@ -13,7 +13,7 @@ datasource db {
 //   record_type          String               @db.VarChar
 //   record_id            BigInt
 //   blob_id              BigInt
-//   created_at           DateTime             @db.Timestamp(6)
+//   created_at           DateTime             @default(now()) @db.Timestamp(6)
 //   active_storage_blobs active_storage_blobs @relation(fields: [blob_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_c3b3935057")
 
 //   @@unique([record_type, record_id, name, blob_id], map: "index_active_storage_attachments_uniqueness")
@@ -29,7 +29,7 @@ datasource db {
 //   service_name                   String                           @db.VarChar
 //   byte_size                      BigInt
 //   checksum                       String                           @db.VarChar
-//   created_at                     DateTime                         @db.Timestamp(6)
+//   created_at                     DateTime                         @default(now()) @db.Timestamp(6)
 //   active_storage_attachments     active_storage_attachments[]
 //   active_storage_variant_records active_storage_variant_records[]
 // }
@@ -49,20 +49,13 @@ datasource db {
 //   @@unique([blob_id, variation_digest], map: "index_active_storage_variant_records_uniqueness")
 // }
 
-// model ar_internal_metadata {
-//   key        String   @id @db.VarChar
-//   value      String?  @db.VarChar
-//   created_at DateTime @db.Timestamp(6)
-//   updated_at DateTime @db.Timestamp(6)
-// }
-
 model Mention {
   id         BigInt   @id @default(autoincrement())
   post_id    BigInt
   source     String?  @db.VarChar
   data       Json?
-  created_at DateTime @db.Timestamp(6)
-  updated_at DateTime @updatedAt
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  updated_at DateTime @updatedAt @db.Timestamp(6)
   posts      Post     @relation(fields: [post_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_4308a5edca")
 
   @@index([post_id], map: "index_mentions_on_post_id")
@@ -74,8 +67,8 @@ model Post {
   title      String?   @db.VarChar
   posted     DateTime? @db.Timestamp(6)
   body       String?
-  created_at DateTime  @db.Timestamp(6)
-  updated_at DateTime  @updatedAt
+  created_at DateTime  @default(now()) @db.Timestamp(6)
+  updated_at DateTime  @updatedAt @db.Timestamp(6)
   author_id  BigInt
   likes      Int?      @default(0)
   mentions   Mention[]
@@ -98,8 +91,8 @@ model PostTag {
 model Tag {
   id         BigInt   @id @default(autoincrement())
   name       String?  @unique(map: "index_tags_on_name") @db.VarChar
-  created_at DateTime @db.Timestamp(6)
-  updated_at DateTime @updatedAt
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  updated_at DateTime @updatedAt @db.Timestamp(6)
 
   @@map("tags")
 }
@@ -108,8 +101,8 @@ model User {
   id              BigInt   @id @default(autoincrement())
   username        String?  @db.VarChar
   password_digest String?  @db.VarChar
-  created_at      DateTime @db.Timestamp(6)
-  updated_at      DateTime @updatedAt
+  created_at      DateTime @default(now()) @db.Timestamp(6)
+  updated_at      DateTime @updatedAt @db.Timestamp(6)
   posts           Post[]
 
   @@map("users")
