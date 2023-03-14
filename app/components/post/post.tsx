@@ -4,7 +4,7 @@ import { FC } from "react";
 import { DateTime } from 'luxon'
 
 export const PostView: FC<{ post: Post }> = ({ post }) => {
-	const createdAt = DateTime.fromJSDate(post.created_at)
+	const createdAt = DateTime.fromJSDate(post.createdAt)
 
 	return <article className="h-entry">
 		<h2 className="p-name">
