@@ -18,7 +18,8 @@ export async function loader({ params }: LoaderArgs) {
 			include: {
 				tag: true
 			}
-		}
+		},
+		mentions: true
 	}})
 
 	return typedjson({ post })

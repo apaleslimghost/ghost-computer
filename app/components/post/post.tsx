@@ -2,10 +2,12 @@ import { Prisma } from "@prisma/client";
 import { Link } from "@remix-run/react";
 import { FC } from "react";
 import { DateTime } from 'luxon'
+import pluralize from 'pluralize'
 
 export const PostView: FC<{ post: Prisma.PostGetPayload<{
 	include: {
-		tags: {include: {tag: true}}
+		tags: {include: {tag: true}},
+		mentions: true
 	}
 }> }> = ({ post }) => {
 	const createdAt = DateTime.fromJSDate(post.createdAt)
@@ -27,6 +29,10 @@ export const PostView: FC<{ post: Prisma.PostGetPayload<{
 				Kara Brightwell
 			</Link>
 		</address>
+
+		{post.mentions.length > 0 ? <Link to={`/posts/${post.id}#responses`}>
+			{pluralize('response', post.mentions.length, true)}
+		</Link> : null}
 
 		{post.tags.length > 0 ? <ul className="tags">
 			{post.tags.map(postTag => <li key={Number(postTag.tagId)}>

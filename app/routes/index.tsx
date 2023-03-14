@@ -35,7 +35,8 @@ export async function loader() {
         include: {
           tag: true
         }
-      }
+      },
+      mentions: true
     }
   })
 
