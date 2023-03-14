@@ -8,7 +8,7 @@ export const PostView: FC<{ post: Post }> = ({ post }) => {
 
 	return <article className="h-entry">
 		<h2 className="p-name">
-			<Link to={''}>
+			<Link to={`/posts/${post.id}`}>
 				{post.title}
 			</Link>
 		</h2>
