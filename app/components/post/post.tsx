@@ -4,7 +4,7 @@ import { FC } from "react";
 import { DateTime } from 'luxon'
 
 export const PostView: FC<{ post: Post }> = ({ post }) => {
-	const posted = DateTime.fromJSDate(post.posted!)
+	const createdAt = DateTime.fromJSDate(post.created_at)
 
 	return <article className="h-entry">
 		<h2 className="p-name">
@@ -12,8 +12,8 @@ export const PostView: FC<{ post: Post }> = ({ post }) => {
 				{post.title}
 			</Link>
 		</h2>
-		<time className="dt-published" title={posted.toLocaleString(DateTime.DATETIME_FULL)} dateTime={posted.toISO()}>
-			{posted.toRelative()}
+		<time className="dt-published" title={createdAt.toLocaleString(DateTime.DATETIME_FULL)} dateTime={createdAt.toISO()}>
+			{createdAt.toRelative()}
 		</time>
 		<address className="p-author h-card">
 			by
