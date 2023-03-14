@@ -1,5 +1,5 @@
 import { LoaderArgs } from "@remix-run/node";
-import { typedjson, useTypedLoaderData } from "remix-typedjson";
+import { typedjson, TypedMetaFunction, useTypedLoaderData } from "remix-typedjson";
 import { z } from "zod";
 import { PostView } from "~/components/post/post";
 import { db } from "~/lib/db.server";
@@ -23,6 +23,10 @@ export async function loader({ params }: LoaderArgs) {
 
 	return typedjson({ post })
 }
+
+export const meta: TypedMetaFunction<typeof loader> = ({ data }) => ({
+	title: `${data.post.title ?? data.post.body ?? 'um what even is a post that has no title or body'} ☰ a pale slim ghost`
+})
 
 export default function PostPage() {
 	const { post } = useTypedLoaderData<typeof loader>()
