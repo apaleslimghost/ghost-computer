@@ -15,8 +15,10 @@ export const PostView: FC<{ post: Post }> = ({ post }) => {
 		<time className="dt-published" title={createdAt.toLocaleString(DateTime.DATETIME_FULL)} dateTime={createdAt.toISO()}>
 			{createdAt.toRelative()}
 		</time>
+		{' '}
 		<address className="p-author h-card">
 			by
+			{' '}
 			<Link to='/' className="u-url p-name">
 				Kara Brightwell
 			</Link>
