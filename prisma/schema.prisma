@@ -30,6 +30,7 @@ model Post {
   likes     Int       @default(0)
   mentions  Mention[]
   users     User      @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_04d13ef8c7")
+  tags      PostTag[]
 
   @@index([authorId], map: "index_posts_on_author_id")
   @@map("posts")
@@ -38,6 +39,8 @@ model Post {
 model PostTag {
   postId BigInt @map("post_id")
   tagId  BigInt @map("tag_id")
+  post   Post   @relation(fields: [postId], references: [id])
+  tag    Tag    @relation(fields: [tagId], references: [id])
 
   @@id([postId, tagId])
   @@index([postId], map: "index_posts_tags_on_post_id")
@@ -46,10 +49,11 @@ model PostTag {
 }
 
 model Tag {
-  id        BigInt   @id @default(autoincrement())
-  name      String   @unique(map: "index_tags_on_name") @db.VarChar
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp(6)
+  id        BigInt    @id @default(autoincrement())
+  name      String    @unique(map: "index_tags_on_name") @db.VarChar
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamp(6)
+  posts     PostTag[]
 
   @@map("tags")
 }

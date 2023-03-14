@@ -1,9 +1,13 @@
-import { Post } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { Link } from "@remix-run/react";
 import { FC } from "react";
 import { DateTime } from 'luxon'
 
-export const PostView: FC<{ post: Post }> = ({ post }) => {
+export const PostView: FC<{ post: Prisma.PostGetPayload<{
+	include: {
+		tags: {include: {tag: true}}
+	}
+}> }> = ({ post }) => {
 	const createdAt = DateTime.fromJSDate(post.createdAt)
 
 	return <article className="h-entry">
@@ -23,6 +27,15 @@ export const PostView: FC<{ post: Post }> = ({ post }) => {
 				Kara Brightwell
 			</Link>
 		</address>
+
+		{post.tags.length > 0 ? <ul className="tags">
+			{post.tags.map(postTag => <li key={Number(postTag.tagId)}>
+				<Link to={`/tags/${postTag.tag.name}`}>
+					{postTag.tag.name}
+				</Link>
+			</li>)}
+		</ul> : null}
+
 
 		{/* TODO */}
 	</article>

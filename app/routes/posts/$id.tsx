@@ -13,6 +13,12 @@ export async function loader({ params }: LoaderArgs) {
 
 	const post = await db.post.findFirstOrThrow({ where: {
 		 id
+	}, include: {
+		tags: {
+			include: {
+				tag: true
+			}
+		}
 	}})
 
 	return typedjson({ post })

@@ -29,6 +29,13 @@ export async function loader() {
   const posts = await db.post.findMany({
     orderBy: {
       createdAt: 'desc'
+    },
+    include: {
+      tags: {
+        include: {
+          tag: true
+        }
+      }
     }
   })
 
