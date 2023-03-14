@@ -1,3 +1,5 @@
+CREATE EXTENSION pgcrypto;
+
 -- CreateTable
 CREATE TABLE "mentions" (
     "id" BIGSERIAL NOT NULL,
@@ -179,4 +181,3 @@ ALTER TABLE "active_storage_attachments" ADD CONSTRAINT "fk_rails_c3b3935057" FO
 
 -- AddForeignKey
 ALTER TABLE "active_storage_variant_records" ADD CONSTRAINT "fk_rails_993965df05" FOREIGN KEY ("blob_id") REFERENCES "active_storage_blobs"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
-
