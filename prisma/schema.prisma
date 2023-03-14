@@ -36,15 +36,14 @@ model Post {
   @@map("posts")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model PostTag {
-  post_id BigInt?
-  tag_id  BigInt?
+  post_id BigInt
+  tag_id  BigInt
 
+  @@id([post_id, tag_id])
   @@index([post_id], map: "index_posts_tags_on_post_id")
   @@index([tag_id], map: "index_posts_tags_on_tag_id")
   @@map("posts_tags")
-  @@ignore
 }
 
 model Tag {
