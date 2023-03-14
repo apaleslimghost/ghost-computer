@@ -108,33 +108,3 @@ model active_storage_variant_records {
 
   @@unique([blob_id, variation_digest], map: "index_active_storage_variant_records_uniqueness")
 }
-
-model ar_internal_metadata {
-  key        String   @id @db.VarChar
-  value      String?  @db.VarChar
-  created_at DateTime @db.Timestamp(6)
-  updated_at DateTime @db.Timestamp(6)
-}
-
-model good_jobs {
-  id                String    @id @default(dbgenerated("public.gen_random_uuid()")) @db.Uuid
-  queue_name        String?
-  priority          Int?
-  serialized_params Json?
-  scheduled_at      DateTime? @db.Timestamp(6)
-  performed_at      DateTime? @db.Timestamp(6)
-  finished_at       DateTime? @db.Timestamp(6)
-  error             String?
-  created_at        DateTime  @db.Timestamp(6)
-  updated_at        DateTime  @db.Timestamp(6)
-  active_job_id     String?   @db.Uuid
-  concurrency_key   String?
-  cron_key          String?
-
-  @@index([active_job_id, created_at], map: "index_good_jobs_on_active_job_id_and_created_at")
-  @@index([cron_key, created_at], map: "index_good_jobs_on_cron_key_and_created_at")
-}
-
-model schema_migrations {
-  version String @id @db.VarChar
-}
