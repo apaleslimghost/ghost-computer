@@ -10,4 +10,4 @@ if (!global.__db) {
 	})
 }
 
-export default global.__db!
+export const db = global.__db!

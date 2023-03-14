@@ -1,6 +1,6 @@
 import { typedjson, useTypedLoaderData } from 'remix-typedjson'
 import { PostView } from "~/components/post/post"
-import db from "~/lib/db.server"
+import { db } from "~/lib/db.server"
 
 export const handle = {
   navContent: {

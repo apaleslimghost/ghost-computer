@@ -2,7 +2,7 @@ import { LoaderArgs } from "@remix-run/node";
 import { typedjson, useTypedLoaderData } from "remix-typedjson";
 import { z } from "zod";
 import { PostView } from "~/components/post/post";
-import dbServer from "~/lib/db.server";
+import { db } from "~/lib/db.server";
 
 const PostParamsSchema = z.object({
 	id: z.coerce.bigint()
@@ -11,7 +11,7 @@ const PostParamsSchema = z.object({
 export async function loader({ params }: LoaderArgs) {
 	const { id } = PostParamsSchema.parse(params)
 
-	const post = await dbServer.post.findFirstOrThrow({ where: {
+	const post = await db.post.findFirstOrThrow({ where: {
 		 id
 	}})
 
