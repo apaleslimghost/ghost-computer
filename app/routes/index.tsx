@@ -28,7 +28,7 @@ export const handle = {
 export async function loader() {
   const posts = await db.post.findMany({
     orderBy: {
-      posted: 'desc'
+      createdAt: 'desc'
     }
   })
 
