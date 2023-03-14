@@ -28,7 +28,7 @@ model Post {
   created_at DateTime  @default(now()) @db.Timestamp(6)
   updated_at DateTime  @updatedAt @db.Timestamp(6)
   author_id  BigInt
-  likes      Int?      @default(0)
+  likes      Int       @default(0)
   mentions   Mention[]
   users      User      @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_04d13ef8c7")
 
@@ -48,7 +48,7 @@ model PostTag {
 
 model Tag {
   id         BigInt   @id @default(autoincrement())
-  name       String?  @unique(map: "index_tags_on_name") @db.VarChar
+  name       String   @unique(map: "index_tags_on_name") @db.VarChar
   created_at DateTime @default(now()) @db.Timestamp(6)
   updated_at DateTime @updatedAt @db.Timestamp(6)
 
@@ -57,8 +57,8 @@ model Tag {
 
 model User {
   id              BigInt   @id @default(autoincrement())
-  username        String?  @db.VarChar
-  password_digest String?  @db.VarChar
+  username        String   @db.VarChar
+  password_digest String   @db.VarChar
   created_at      DateTime @default(now()) @db.Timestamp(6)
   updated_at      DateTime @updatedAt @db.Timestamp(6)
   posts           Post[]
