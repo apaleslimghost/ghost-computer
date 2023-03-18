@@ -1,15 +1,10 @@
-import { Prisma } from "@prisma/client";
 import { Link } from "@remix-run/react";
 import { FC } from "react";
 import { DateTime } from 'luxon'
 import pluralize from 'pluralize'
+import { FullPost } from "~/models/post";
 
-export const PostView: FC<{ post: Prisma.PostGetPayload<{
-	include: {
-		tags: {include: {tag: true}},
-		mentions: true
-	}
-}> }> = ({ post }) => {
+export const PostView: FC<{ post: FullPost }> = ({ post }) => {
 	const createdAt = DateTime.fromJSDate(post.createdAt)
 
 	return <article className="h-entry">

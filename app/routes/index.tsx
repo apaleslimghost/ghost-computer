@@ -1,6 +1,7 @@
 import { typedjson, useTypedLoaderData } from 'remix-typedjson'
 import { PostView } from "~/components/post/post"
 import { db } from "~/lib/db.server"
+import { postIncludes } from '~/models/post'
 
 export const handle = {
   navContent: {
@@ -30,14 +31,7 @@ export async function loader() {
     orderBy: {
       createdAt: 'desc'
     },
-    include: {
-      tags: {
-        include: {
-          tag: true
-        }
-      },
-      mentions: true
-    }
+    include: postIncludes
   })
 
   return typedjson({ posts })

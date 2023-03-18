@@ -3,6 +3,7 @@ import { typedjson, TypedMetaFunction, useTypedLoaderData } from "remix-typedjso
 import { z } from "zod";
 import { PostView } from "~/components/post/post";
 import { db } from "~/lib/db.server";
+import { postIncludes } from "~/models/post";
 
 const PostParamsSchema = z.object({
 	id: z.coerce.bigint()
@@ -13,14 +14,7 @@ export async function loader({ params }: LoaderArgs) {
 
 	const post = await db.post.findFirstOrThrow({ where: {
 		 id
-	}, include: {
-		tags: {
-			include: {
-				tag: true
-			}
-		},
-		mentions: true
-	}})
+	}, include: postIncludes})
 
 	return typedjson({ post })
 }
