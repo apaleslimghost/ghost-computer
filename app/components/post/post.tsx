@@ -5,7 +5,19 @@ import pluralize from 'pluralize'
 import type { FullPost } from '~/models/post'
 import Markdown from 'markdown-to-jsx'
 
-export const PostView: FC<{ post: FullPost }> = ({ post }) => {
+const MarkdownLink: FC<{ href: string; title: string }> = ({ href, title }) =>
+	href.match(/^https?:/) ? (
+		<a href={href} target='_blank' rel='nofollow noreferrer'>
+			{title}
+		</a>
+	) : (
+		<Link to={href}>{title}</Link>
+	)
+
+export const PostView: FC<{ post: FullPost; excerpt?: boolean }> = ({
+	post,
+	excerpt,
+}) => {
 	const createdAt = DateTime.fromJSDate(post.createdAt)
 
 	return (
@@ -46,7 +58,15 @@ export const PostView: FC<{ post: FullPost }> = ({ post }) => {
 			) : null}
 
 			<div className='e-content'>
-				<Markdown>{post.body}</Markdown>
+				<Markdown
+					options={{
+						overrides: {
+							a: MarkdownLink,
+						},
+					}}
+				>
+					{post.body}
+				</Markdown>
 			</div>
 		</article>
 	)
