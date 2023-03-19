@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client'
 
 declare global {
-  var __db: PrismaClient | undefined;
+	var __db: PrismaClient | undefined
 }
 
 if (!global.__db) {

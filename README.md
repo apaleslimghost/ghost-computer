@@ -43,6 +43,7 @@
 - [ ] pagination/lazy loading
 
 ## bugs
+
 - [x] fix home header styles on small screens
 - [x] post date time
 - [x] safari ugh

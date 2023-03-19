@@ -1,9 +1,10 @@
-html, body {
-	height: 100%
+html,
+body {
+	height: 100%;
 }
 
 html {
-	background: linear-gradient(to right bottom, #AA076B 60%, #61045F);
+	background: linear-gradient(to right bottom, #aa076b 60%, #61045f);
 	background-size: 100% 100%;
 	background-attachment: fixed;
 	color: white;
@@ -18,17 +19,19 @@ body.dropping::after {
 	right: 0;
 	bottom: 0;
 	background: #0003;
-	content: 'drop files to post'
+	content: 'drop files to post';
 }
 
-h1, h2 {
+h1,
+h2 {
 	font-weight: 900;
 	margin-top: 0;
 	margin-bottom: 2rem;
 	line-height: 1;
 }
 
-a, a:visited {
+a,
+a:visited {
 	color: white;
 	font-weight: 900;
 }
@@ -53,7 +56,7 @@ header {
 	position: fixed;
 	top: 0;
 	padding-bottom: 4em;
-	background: linear-gradient(to bottom, #AA076B 80%, #aa076b00);
+	background: linear-gradient(to bottom, #aa076b 80%, #aa076b00);
 
 	height: 6em;
 
@@ -65,7 +68,7 @@ header {
 		height: 24rem;
 
 		h1 {
-				font-size: calc(2.4rem + 8vw);
+			font-size: calc(2.4rem + 8vw);
 		}
 
 		@media (min-width: 70rem) {
@@ -154,11 +157,15 @@ article {
 		}
 	}
 
-	h3, h4, h5, h6 {
+	h3,
+	h4,
+	h5,
+	h6 {
 		margin-top: 2em;
 	}
 
-	ul, ol {
+	ul,
+	ol {
 		padding: 0;
 	}
 
@@ -172,7 +179,7 @@ article {
 	}
 
 	pre {
-		background: #370E36;
+		background: #370e36;
 		padding: 1em;
 	}
 
@@ -191,7 +198,8 @@ article {
 a.secret-area {
 	color: transparent;
 
-	&:hover, &:active {
+	&:hover,
+	&:active {
 		color: inherit;
 	}
 }
@@ -200,13 +208,14 @@ a.secret-area {
 	margin-bottom: 0.5rem;
 }
 
-input:not([type=submit]), textarea {
+input:not([type='submit']),
+textarea {
 	font: inherit;
 	border: 0 none;
 	appearance: none;
 }
 
-input:not([type=submit]) {
+input:not([type='submit']) {
 	background: transparent;
 	color: inherit;
 	background: #fff3;
@@ -219,11 +228,13 @@ textarea {
 	resize: vertical;
 }
 
-button, input[type=button], input[type=submit] {
+button,
+input[type='button'],
+input[type='submit'] {
 	font: inherit;
 	appearance: none;
 	font-size: 0.9em;
-	background: #370E36;
+	background: #370e36;
 	border: 0 none;
 	color: white;
 	padding: 0.2em 0.4em;
@@ -231,7 +242,7 @@ button, input[type=button], input[type=submit] {
 	font-weight: 900;
 
 	&:hover {
-		background: #5B0D5A;
+		background: #5b0d5a;
 	}
 
 	&:active {
