@@ -5,13 +5,19 @@ import pluralize from 'pluralize'
 import type { FullPost } from '~/models/post'
 import Markdown from 'markdown-to-jsx'
 
-const MarkdownLink: FC<{ href: string; title: string }> = ({ href, title }) =>
-	href.match(/^https?:/) ? (
-		<a href={href} target='_blank' rel='nofollow noreferrer'>
-			{title}
+const MarkdownLink: FC<{
+	href: string
+	title?: string
+	children: JSX.Element
+}> = ({ href, title, children }) =>
+	href.match(/^https?:/) && !href.startsWith('https://ghost.computer') ? (
+		<a href={href} target='_blank' rel='nofollow noreferrer' title={title}>
+			{children}
 		</a>
 	) : (
-		<Link to={href}>{title}</Link>
+		<Link to={href.replace(/^https:\/\/ghost\.computer/, '')} title={title}>
+			{children}
+		</Link>
 	)
 
 export const PostView: FC<{ post: FullPost; excerpt?: boolean }> = ({
