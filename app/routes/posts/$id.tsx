@@ -1,7 +1,8 @@
-import { LoaderArgs } from '@remix-run/node'
+import type { LoaderArgs } from '@remix-run/node'
+import type {
+	TypedMetaFunction} from 'remix-typedjson';
 import {
 	typedjson,
-	TypedMetaFunction,
 	useTypedLoaderData,
 } from 'remix-typedjson'
 import { z } from 'zod'

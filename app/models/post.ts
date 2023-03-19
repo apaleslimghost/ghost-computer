@@ -1,5 +1,4 @@
-import { Prisma } from '@prisma/client'
-import { db } from '~/lib/db.server'
+import type { Prisma } from '@prisma/client'
 
 export const postIncludes = {
 	tags: { include: { tag: true } },

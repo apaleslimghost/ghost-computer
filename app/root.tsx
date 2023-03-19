@@ -1,15 +1,16 @@
 import type { MetaFunction, LinksFunction } from '@remix-run/node'
+import type {
+	RouteMatch} from '@remix-run/react';
 import {
 	Links,
 	LiveReload,
 	Meta,
 	Outlet,
-	RouteMatch,
 	Scripts,
 	ScrollRestoration,
 	useMatches,
 } from '@remix-run/react'
-import { FC, ReactNode } from 'react'
+import type { FC, ReactNode } from 'react'
 
 import styles from './styles/main.css'
 

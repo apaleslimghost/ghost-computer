@@ -1,8 +1,8 @@
 import { Link } from '@remix-run/react'
-import { FC } from 'react'
+import type { FC } from 'react'
 import { DateTime } from 'luxon'
 import pluralize from 'pluralize'
-import { FullPost } from '~/models/post'
+import type { FullPost } from '~/models/post'
 
 export const PostView: FC<{ post: FullPost }> = ({ post }) => {
 	const createdAt = DateTime.fromJSDate(post.createdAt)
