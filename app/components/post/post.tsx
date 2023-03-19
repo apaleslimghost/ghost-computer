@@ -3,6 +3,7 @@ import type { FC } from 'react'
 import { DateTime } from 'luxon'
 import pluralize from 'pluralize'
 import type { FullPost } from '~/models/post'
+import Markdown from 'markdown-to-jsx'
 
 export const PostView: FC<{ post: FullPost }> = ({ post }) => {
 	const createdAt = DateTime.fromJSDate(post.createdAt)
@@ -22,7 +23,7 @@ export const PostView: FC<{ post: FullPost }> = ({ post }) => {
 			</time>
 
 			<address className='p-author h-card'>
-				by{' '}
+				by&nbsp;
 				<Link to='/' className='u-url p-name'>
 					Kara Brightwell
 				</Link>
@@ -43,6 +44,10 @@ export const PostView: FC<{ post: FullPost }> = ({ post }) => {
 					))}
 				</ul>
 			) : null}
+
+			<div className='e-content'>
+				<Markdown>{post.body}</Markdown>
+			</div>
 
 			{/* TODO */}
 		</article>
