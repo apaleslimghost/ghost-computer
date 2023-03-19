@@ -12,24 +12,28 @@ export const PostView: FC<{ post: FullPost }> = ({ post }) => {
 			<h2 className='p-name'>
 				<Link to={`/posts/${post.id}`}>{post.title}</Link>
 			</h2>
+
 			<time
 				className='dt-published'
 				title={createdAt.toLocaleString(DateTime.DATETIME_FULL)}
 				dateTime={createdAt.toISO()}
 			>
 				{createdAt.toRelative()}
-			</time>{' '}
+			</time>
+
 			<address className='p-author h-card'>
 				by{' '}
 				<Link to='/' className='u-url p-name'>
 					Kara Brightwell
 				</Link>
 			</address>
+
 			{post.mentions.length > 0 ? (
 				<Link to={`/posts/${post.id}#responses`}>
 					{pluralize('response', post.mentions.length, true)}
 				</Link>
 			) : null}
+
 			{post.tags.length > 0 ? (
 				<ul className='tags'>
 					{post.tags.map((postTag) => (
@@ -39,6 +43,7 @@ export const PostView: FC<{ post: FullPost }> = ({ post }) => {
 					))}
 				</ul>
 			) : null}
+
 			{/* TODO */}
 		</article>
 	)
