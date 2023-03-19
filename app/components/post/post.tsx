@@ -48,8 +48,6 @@ export const PostView: FC<{ post: FullPost }> = ({ post }) => {
 			<div className='e-content'>
 				<Markdown>{post.body}</Markdown>
 			</div>
-
-			{/* TODO */}
 		</article>
 	)
 }
