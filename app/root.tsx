@@ -1,6 +1,5 @@
 import type { MetaFunction, LinksFunction } from '@remix-run/node'
-import type {
-	RouteMatch} from '@remix-run/react';
+import type { RouteMatch } from '@remix-run/react'
 import {
 	Links,
 	LiveReload,
