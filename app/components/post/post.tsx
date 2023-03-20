@@ -1,9 +1,10 @@
 import { Link } from '@remix-run/react'
-import type { FC } from 'react'
+import { cloneElement, FC } from 'react'
 import { DateTime } from 'luxon'
 import pluralize from 'pluralize'
 import type { FullPost } from '~/models/post'
-import Markdown from 'markdown-to-jsx'
+import { compiler, MarkdownToJSX } from 'markdown-to-jsx'
+import React from 'react'
 
 const MarkdownLink: FC<{
 	href: string
@@ -19,6 +20,27 @@ const MarkdownLink: FC<{
 			{children}
 		</Link>
 	)
+
+const Markdown: FC<{
+	body: string
+	excerpt?: boolean
+	readMore: JSX.Element
+	options: MarkdownToJSX.Options
+}> = ({ body, excerpt, options, readMore }) => {
+	const rendered = compiler(body, {
+		...options,
+		forceWrapper: true,
+		wrapper: React.Fragment,
+	})
+
+	if (excerpt && Array.isArray(rendered.props.children)) {
+		return cloneElement(rendered, {
+			children: rendered.props.children.slice(0, 3).concat(readMore),
+		})
+	}
+
+	return rendered
+}
 
 export const PostView: FC<{ post: FullPost; excerpt?: boolean }> = ({
 	post,
@@ -70,9 +92,14 @@ export const PostView: FC<{ post: FullPost; excerpt?: boolean }> = ({
 							a: MarkdownLink,
 						},
 					}}
-				>
-					{post.body}
-				</Markdown>
+					body={post.body}
+					excerpt={excerpt}
+					readMore={
+						<p>
+							<Link to={`/posts/${post.id}`}>read more&hellip;</Link>
+						</p>
+					}
+				/>
 			</div>
 		</article>
 	)
