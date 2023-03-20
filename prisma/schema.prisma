@@ -8,8 +8,8 @@ datasource db {
 }
 
 model Mention {
-  id        BigInt   @id @default(autoincrement())
-  postId    BigInt   @map("post_id")
+  id        Int   @id @default(autoincrement())
+  postId    Int   @map("post_id")
   source    String?  @db.VarChar
   data      Json?
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
@@ -21,12 +21,12 @@ model Mention {
 }
 
 model Post {
-  id        BigInt    @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   title     String?   @db.VarChar
   body      String
   createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp(6)
   updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamp(6)
-  authorId  BigInt    @map("author_id")
+  authorId  Int    @map("author_id")
   likes     Int       @default(0)
   mentions  Mention[]
   users     User      @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_04d13ef8c7")
@@ -37,8 +37,8 @@ model Post {
 }
 
 model PostTag {
-  postId BigInt @map("post_id")
-  tagId  BigInt @map("tag_id")
+  postId Int @map("post_id")
+  tagId  Int @map("tag_id")
   post   Post   @relation(fields: [postId], references: [id])
   tag    Tag    @relation(fields: [tagId], references: [id])
 
@@ -49,7 +49,7 @@ model PostTag {
 }
 
 model Tag {
-  id        BigInt    @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   name      String    @unique(map: "index_tags_on_name") @db.VarChar
   createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp(6)
   updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamp(6)
@@ -59,7 +59,7 @@ model Tag {
 }
 
 model User {
-  id             BigInt   @id @default(autoincrement())
+  id             Int   @id @default(autoincrement())
   username       String   @db.VarChar
   passwordDigest String   @map("password_digest") @db.VarChar
   createdAt      DateTime @default(now()) @map("created_at") @db.Timestamp(6)
@@ -70,11 +70,11 @@ model User {
 }
 
 model active_storage_attachments {
-  id                   BigInt               @id @default(autoincrement())
+  id                   Int               @id @default(autoincrement())
   name                 String               @db.VarChar
   record_type          String               @db.VarChar
-  record_id            BigInt
-  blob_id              BigInt
+  record_id            Int
+  blob_id              Int
   createdAt            DateTime             @default(now()) @map("created_at") @db.Timestamp(6)
   active_storage_blobs active_storage_blobs @relation(fields: [blob_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_c3b3935057")
 
@@ -83,13 +83,13 @@ model active_storage_attachments {
 }
 
 model active_storage_blobs {
-  id                             BigInt                           @id @default(autoincrement())
+  id                             Int                           @id @default(autoincrement())
   key                            String                           @unique(map: "index_active_storage_blobs_on_key") @db.VarChar
   filename                       String                           @db.VarChar
   content_type                   String?                          @db.VarChar
   metadata                       String?
   service_name                   String                           @db.VarChar
-  byte_size                      BigInt
+  byte_size                      Int
   checksum                       String                           @db.VarChar
   createdAt                      DateTime                         @default(now()) @map("created_at") @db.Timestamp(6)
   active_storage_attachments     active_storage_attachments[]
@@ -97,14 +97,14 @@ model active_storage_blobs {
 }
 
 model active_storage_postgresql_files {
-  id  BigInt  @id @default(autoincrement())
+  id  Int  @id @default(autoincrement())
   oid Int?    @db.Oid
   key String? @unique(map: "index_active_storage_postgresql_files_on_key") @db.VarChar
 }
 
 model active_storage_variant_records {
-  id                   BigInt               @id @default(autoincrement())
-  blob_id              BigInt
+  id                   Int               @id @default(autoincrement())
+  blob_id              Int
   variation_digest     String               @db.VarChar
   active_storage_blobs active_storage_blobs @relation(fields: [blob_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_rails_993965df05")
 
