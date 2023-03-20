@@ -61,7 +61,7 @@ export default function Index() {
 	return (
 		<>
 			{posts.map((post) => (
-				<PostView key={post.id.toString()} post={post} />
+				<PostView key={post.id.toString()} post={post} excerpt />
 			))}
 		</>
 	)
