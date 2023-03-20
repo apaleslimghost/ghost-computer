@@ -7,7 +7,7 @@ import { db } from '~/lib/db.server'
 import { postIncludes } from '~/models/post'
 
 const PostParamsSchema = z.object({
-	id: z.coerce.bigint(),
+	id: z.coerce.number(),
 })
 
 export async function loader({ params }: LoaderArgs) {
