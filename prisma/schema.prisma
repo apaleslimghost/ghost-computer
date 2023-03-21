@@ -60,7 +60,7 @@ model Tag {
 
 model User {
   id             Int   @id @default(autoincrement())
-  username       String   @db.VarChar
+  username       String   @db.VarChar @unique
   passwordDigest String   @map("password_digest") @db.VarChar
   createdAt      DateTime @default(now()) @map("created_at") @db.Timestamp(6)
   updatedAt      DateTime @updatedAt @map("updated_at") @db.Timestamp(6)
