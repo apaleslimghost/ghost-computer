@@ -1,4 +1,5 @@
 import { typedjson, useTypedLoaderData } from 'remix-typedjson'
+import { PostForm } from '~/components/post/form'
 import { PostView } from '~/components/post/post'
 import { db } from '~/lib/db.server'
 import { postIncludes } from '~/models/post'
@@ -63,6 +64,8 @@ export default function Index() {
 			{posts.map((post) => (
 				<PostView key={post.id.toString()} post={post} excerpt />
 			))}
+
+			<PostForm />
 		</>
 	)
 }
