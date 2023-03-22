@@ -35,7 +35,9 @@ const Markdown: FC<{
 
 	if (excerpt && Array.isArray(rendered.props.children)) {
 		return cloneElement(rendered, {
-			children: rendered.props.children.slice(0, 3).concat(readMore),
+			children: rendered.props.children
+				.slice(0, 3)
+				.concat(rendered.props.children.length > 3 ? readMore : []),
 		})
 	}
 
