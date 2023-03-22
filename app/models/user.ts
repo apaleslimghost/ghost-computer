@@ -2,13 +2,21 @@ import { User } from "@prisma/client";
 import { db } from "~/lib/db.server";
 import { getSession } from "~/session";
 
-export async function getCurrentUser(request: Request): Promise<User | undefined> {
+type UserSession = {
+	loggedIn: boolean,
+	getUser: () => Promise<User | undefined>
+}
+
+export async function userSession(request: Request): Promise<UserSession> {
 	const session = await getSession(request.headers.get('cookie'))
-	if(session.has('userId')) {
-		return db.user.findUniqueOrThrow({
+	const userId = session.get('userId')
+
+	return {
+		loggedIn: Boolean(userId),
+		getUser: async () => userId ? db.user.findUniqueOrThrow({
 			where: {
-				id: session.get('userId')
+				id: userId
 			}
-		})
+		}) : undefined
 	}
 }

@@ -25,10 +25,8 @@ export const links: LinksFunction = () => [
 	// TODO rss
 ]
 
-type NavProps = { className?: string; children: ReactNode }
-
-const Nav: FC<NavProps> = ({ className, children }) => (
-	<header className={className}>
+const Nav: FC<{ children: ReactNode }> = ({ children }) => (
+	<header>
 		<h1>
 			<a href='/'>a pale slim ghost</a>
 		</h1>
@@ -40,14 +38,18 @@ const Nav: FC<NavProps> = ({ className, children }) => (
 	</header>
 )
 
-const getNavContent = (match: RouteMatch): NavProps =>
-	match.handle?.navContent ?? {}
+const getNavContent = (match: RouteMatch): ReactNode =>
+	match.handle?.navContent ?? null
+
+const getBodyClass = (match: RouteMatch): string | undefined =>
+	match.handle?.bodyClass
 
 export default function App() {
 	const matches = useMatches()
 	const currentPage = matches[matches.length - 1]
 
 	const navContent = getNavContent(currentPage)
+	const bodyClass = getBodyClass(currentPage)
 
 	return (
 		<html lang='en'>
@@ -55,8 +57,8 @@ export default function App() {
 				<Meta />
 				<Links />
 			</head>
-			<body>
-				<Nav {...navContent} />
+			<body className={bodyClass}>
+				<Nav>{navContent}</Nav>
 				<main>
 					<Outlet />
 				</main>

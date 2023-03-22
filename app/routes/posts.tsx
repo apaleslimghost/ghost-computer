@@ -1,4 +1,5 @@
 import { ActionArgs } from '@remix-run/node'
+import { Outlet } from '@remix-run/react'
 import { z } from 'zod'
 import { db } from '~/lib/db.server'
 
@@ -32,3 +33,5 @@ export async function action({ request }: ActionArgs) {
 	// 	}
 	// })
 }
+
+export default () => <Outlet />

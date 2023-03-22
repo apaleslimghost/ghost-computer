@@ -4,51 +4,49 @@ import { PostForm } from '~/components/post/form'
 import { PostView } from '~/components/post/post'
 import { db } from '~/lib/db.server'
 import { postIncludes } from '~/models/post'
-import { getCurrentUser } from '~/models/user'
+import { userSession } from '~/models/user'
 
 export const handle = {
-	navContent: {
-		className: 'home',
-		children: (
-			<section>
-				she'll haunt you with:
-				<ul>
-					<li>
-						<a href='https://asmpts.com' target='blank' rel='noopener'>
-							big kicks & rich noises
-						</a>
-					</li>
-					<li>
-						<a href='https://paleslimghost.store' target='blank' rel='noopener'>
-							synthesisers and synthesiser accessories
-						</a>
-					</li>
-					<li>
-						<a
-							href='https://github.com/apaleslimghost'
-							target='blank'
-							rel='noopener'
-						>
-							error messages that tell you how they can be fixed
-						</a>
-					</li>
-					<li>
-						<a
-							href='https://cathode.church/@apaleslimghost'
-							target='blank'
-							rel='me noopener'
-						>
-							shitposts
-						</a>
-					</li>
-				</ul>
-			</section>
-		),
-	},
+	bodyClass: 'home',
+	navContent: (
+		<section>
+			she'll haunt you with:
+			<ul>
+				<li>
+					<a href='https://asmpts.com' target='blank' rel='noopener'>
+						big kicks & rich noises
+					</a>
+				</li>
+				<li>
+					<a href='https://paleslimghost.store' target='blank' rel='noopener'>
+						synthesisers and synthesiser accessories
+					</a>
+				</li>
+				<li>
+					<a
+						href='https://github.com/apaleslimghost'
+						target='blank'
+						rel='noopener'
+					>
+						error messages that tell you how they can be fixed
+					</a>
+				</li>
+				<li>
+					<a
+						href='https://cathode.church/@apaleslimghost'
+						target='blank'
+						rel='me noopener'
+					>
+						shitposts
+					</a>
+				</li>
+			</ul>
+		</section>
+	),
 }
 
 export async function loader({ request }: LoaderArgs) {
-	const user = await getCurrentUser(request)
+	const { loggedIn } = await userSession(request)
 	const posts = await db.post.findMany({
 		orderBy: {
 			createdAt: 'desc',
@@ -56,11 +54,11 @@ export async function loader({ request }: LoaderArgs) {
 		include: postIncludes,
 	})
 
-	return typedjson({ posts, user })
+	return typedjson({ posts, loggedIn })
 }
 
 export default function Index() {
-	const { posts, user } = useTypedLoaderData<typeof loader>()
+	const { posts, loggedIn } = useTypedLoaderData<typeof loader>()
 
 	return (
 		<>
@@ -68,7 +66,7 @@ export default function Index() {
 				<PostView key={post.id.toString()} post={post} excerpt />
 			))}
 
-			{user && <PostForm />}
+			{loggedIn && <PostForm />}
 		</>
 	)
 }

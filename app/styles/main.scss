@@ -64,7 +64,7 @@ header {
 		font-size: calc(1rem + 8vw);
 	}
 
-	&.home {
+		body.home & {
 		height: 24rem;
 
 		h1 {
@@ -81,7 +81,7 @@ header {
 	}
 
 	@media (min-width: 56rem) {
-		&:not(.home) {
+		body:not(.home) & {
 			top: auto;
 			background: none;
 			padding: 0;
