@@ -1,7 +1,7 @@
 import type { Prisma } from '@prisma/client'
 
 export const postIncludes = {
-	tags: { include: { tag: true } },
+	tags: true,
 	mentions: true,
 } satisfies Prisma.PostInclude
 

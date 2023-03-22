@@ -79,9 +79,9 @@ export const PostView: FC<{ post: FullPost; excerpt?: boolean }> = ({
 
 			{post.tags.length > 0 ? (
 				<ul className='tags'>
-					{post.tags.map((postTag) => (
-						<li key={Number(postTag.tagId)}>
-							<Link to={`/tags/${postTag.tag.name}`}>{postTag.tag.name}</Link>
+					{post.tags.map((tag) => (
+						<li key={Number(tag.id)}>
+							<Link to={`/tags/${tag.name}`}>{tag.name}</Link>
 						</li>
 					))}
 				</ul>
