@@ -3,6 +3,7 @@ import { db } from "~/lib/db.server";
 import { getSession } from "~/session";
 
 type UserSession = {
+	userId: number | undefined,
 	loggedIn: boolean,
 	getUser: () => Promise<User | undefined>
 }
@@ -12,6 +13,7 @@ export async function userSession(request: Request): Promise<UserSession> {
 	const userId = session.get('userId')
 
 	return {
+		userId,
 		loggedIn: Boolean(userId),
 		getUser: async () => userId ? db.user.findUniqueOrThrow({
 			where: {
