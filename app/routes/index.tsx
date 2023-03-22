@@ -1,8 +1,10 @@
+import { LoaderArgs } from '@remix-run/node'
 import { typedjson, useTypedLoaderData } from 'remix-typedjson'
 import { PostForm } from '~/components/post/form'
 import { PostView } from '~/components/post/post'
 import { db } from '~/lib/db.server'
 import { postIncludes } from '~/models/post'
+import { getCurrentUser } from '~/models/user'
 
 export const handle = {
 	navContent: {
@@ -45,7 +47,8 @@ export const handle = {
 	},
 }
 
-export async function loader() {
+export async function loader({ request }: LoaderArgs) {
+	const user = await getCurrentUser(request)
 	const posts = await db.post.findMany({
 		orderBy: {
 			createdAt: 'desc',
@@ -53,11 +56,11 @@ export async function loader() {
 		include: postIncludes,
 	})
 
-	return typedjson({ posts })
+	return typedjson({ posts, user })
 }
 
 export default function Index() {
-	const { posts } = useTypedLoaderData<typeof loader>()
+	const { posts, user } = useTypedLoaderData<typeof loader>()
 
 	return (
 		<>
@@ -65,7 +68,7 @@ export default function Index() {
 				<PostView key={post.id.toString()} post={post} excerpt />
 			))}
 
-			<PostForm />
+			{user && <PostForm />}
 		</>
 	)
 }
