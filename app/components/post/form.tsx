@@ -8,7 +8,7 @@ export const PostForm: FC<{ post?: FullPost }> = ({ post }) => (
 			<input
 				name='title'
 				placeholder='new post'
-				value={post?.title ?? undefined}
+				defaultValue={post?.title ?? undefined}
 			/>
 		</h2>
 
@@ -16,14 +16,14 @@ export const PostForm: FC<{ post?: FullPost }> = ({ post }) => (
 			<input
 				name='tags'
 				placeholder='tags...'
-				value={
-					post ? post.tags.map((tag) => tag.tag.name).join(', ') : undefined
+				defaultValue={
+					post ? post.tags.map((tag) => tag.name).join(', ') : undefined
 				}
 			/>
 		</div>
 
 		<div className='field'>
-			<textarea required name='body' value={post?.body} />
+			<textarea required name='body' defaultValue={post?.body} />
 		</div>
 
 		<div className='actions'>
