@@ -1,0 +1,25 @@
+diff --git a/node_modules/remix-esbuild-override/dist/index.js b/node_modules/remix-esbuild-override/dist/index.js
+index 6979726..07ac81f 100644
+--- a/node_modules/remix-esbuild-override/dist/index.js
++++ b/node_modules/remix-esbuild-override/dist/index.js
+@@ -21,6 +21,7 @@ const withEsbuildOverride = (esbuildOverride) => {
+         if (esbuild.overridden)
+             break;
+         const originalBuildFunction = esbuild.build;
++        const originalContextFunction = esbuild.context;
+         try {
+             Object.defineProperty(esbuild, "build", {
+                 get: () => (option) => {
+@@ -28,6 +29,12 @@ const withEsbuildOverride = (esbuildOverride) => {
+                 },
+                 enumerable: true,
+             });
++            Object.defineProperty(esbuild, "context", {
++                get: () => (option) => {
++                    return originalContextFunction((0, exports.esbuildOverrideOption)(option));
++                },
++                enumerable: true,
++            });
+             Object.defineProperty(esbuild, "overridden", {
+                 value: true,
+                 enumerable: true,

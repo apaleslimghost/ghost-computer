@@ -1,5 +1,6 @@
 {
 	"scripts": {
+		"postinstall": "patch-package && remix-esbuild-override",
 		"build": "remix build",
 		"dev": "run-p dev:*",
 		"dev:sass": "sass --watch app/:app/",
@@ -12,9 +13,9 @@
 		"@hotwired/stimulus": "^3.1.0",
 		"@hotwired/turbo": "^7.1.0",
 		"@prisma/client": "^4.11.0",
-		"@remix-run/node": "^1.14.0",
-		"@remix-run/react": "^1.14.0",
-		"@remix-run/serve": "^1.14.0",
+		"@remix-run/node": "^1.16.0",
+		"@remix-run/react": "^1.16.0",
+		"@remix-run/serve": "^1.16.0",
 		"bcrypt": "^5.1.0",
 		"isbot": "^3.6.5",
 		"luxon": "^3.3.0",
@@ -32,8 +33,9 @@
 		"npm": "8.18.0"
 	},
 	"devDependencies": {
-		"@remix-run/dev": "^1.14.0",
-		"@remix-run/eslint-config": "^1.14.0",
+		"@danielx/civet": "^0.6.1",
+		"@remix-run/dev": "^1.16.0",
+		"@remix-run/eslint-config": "^1.16.0",
 		"@types/bcrypt": "^5.0.0",
 		"@types/luxon": "^3.2.0",
 		"@types/pluralize": "^0.0.29",
@@ -42,8 +44,10 @@
 		"eslint": "^8.27.0",
 		"eslint-config-prettier": "^8.7.0",
 		"npm-run-all": "^4.1.5",
+		"patch-package": "^7.0.0",
 		"prettier": "^2.8.4",
 		"prisma": "^4.11.0",
+		"remix-esbuild-override": "^3.0.4",
 		"sass": "^1.59.2",
 		"typescript": "^4.8.4",
 		"vite": "^4.0.4",
