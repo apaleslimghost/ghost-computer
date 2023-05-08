@@ -1,0 +1,20 @@
+diff --git a/node_modules/@danielx/civet/dist/esbuild-plugin.js b/node_modules/@danielx/civet/dist/esbuild-plugin.js
+index fe94a40..13f9617 100644
+--- a/node_modules/@danielx/civet/dist/esbuild-plugin.js
++++ b/node_modules/@danielx/civet/dist/esbuild-plugin.js
+@@ -75,7 +75,6 @@ function civet (options = {}) {
+     name: "civet",
+ 
+     setup(build) {
+-
+       build.onStart(async function() {
+         if (next) {
+           const { tmpdir } = require('os')
+@@ -116,6 +115,7 @@ function civet (options = {}) {
+ 
+           return {
+             contents: compiled,
++            loader: 'jsx'
+           }
+         }
+         catch (e) {
