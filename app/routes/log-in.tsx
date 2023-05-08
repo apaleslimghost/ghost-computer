@@ -1,6 +1,6 @@
 import { Form } from '@remix-run/react'
 import { db } from '~/lib/db.server'
-import bcrypt from 'bcrypt'
+import bcrypt from '~/lib/bcrypt.server'
 import { z } from 'zod'
 import type { ActionArgs, LoaderArgs } from '@remix-run/node'
 import { redirect } from '@remix-run/node'
