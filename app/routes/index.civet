@@ -1,7 +1,7 @@
 import { LoaderArgs } from '@remix-run/node'
 import { typedjson, useTypedLoaderData } from 'remix-typedjson'
 import { PostForm } from '~/components/post/form'
-import { PostView } from '~/components/post/post'
+import { PostView } from '../components/post/post.civet'
 import { db } from '~/lib/db.server'
 import { postIncludes } from '~/models/post'
 import { userSession } from '~/models/user'

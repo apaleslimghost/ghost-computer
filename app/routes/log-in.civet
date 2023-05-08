@@ -1,0 +1,49 @@
+import type { ActionArgs, LoaderArgs } from '@remix-run/node'
+import { Form } from '@remix-run/react'
+import { db } from '~/lib/db.server'
+import bcrypt from '~/lib/bcrypt.server'
+import { z } from 'zod'
+import { redirect } from '@remix-run/node'
+import { commitSession, getSession } from '~/session'
+
+LoginFormSchema := z.object {
+	username: z.string()
+	password: z.string()
+}
+
+export loader := async ({ request }: LoaderArgs) =>
+	session := await getSession request.headers.get 'cookie'
+	if session.get 'userId'
+		redirect '/',
+			headers: {
+				'set-cookie': await commitSession(session),
+			}
+	else null
+
+export action := async ({ request }: ActionArgs) =>
+	session := await getSession request.headers.get 'cookie'
+	body := await request.formData()
+	{ username, password } := LoginFormSchema.parse Object.fromEntries body
+
+	user := await db.user.findUniqueOrThrow {
+		where: { username }
+	}
+
+	if await bcrypt.compare(password, user.passwordDigest)
+		session.set 'userId', user.id
+
+		redirect '/',
+			headers: {
+				'set-cookie': await commitSession(session),
+			}
+	else
+		// TODO
+		throw new Error('nope')
+
+
+export default =>
+	<Form method='post'>
+		<input name='username' placeholder='username' />
+		<input name='password' type='password' placeholder='password' />
+		<input type='submit' value='Log in' />
+	</Form>

@@ -1,0 +1,11 @@
+import { LoaderArgs, redirect } from '@remix-run/node'
+import { commitSession, getSession } from '~/session'
+
+export loader := async ({ request }: LoaderArgs) =>
+	session := await getSession request.headers.get 'cookie'
+	session.unset 'userId'
+
+	redirect '/',
+		headers: {
+			'set-cookie': await commitSession(session),
+		}

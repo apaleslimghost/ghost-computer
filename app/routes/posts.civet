@@ -1,0 +1,42 @@
+import { ActionArgs, redirect } from '@remix-run/node'
+import { Outlet } from '@remix-run/react'
+import { z } from 'zod'
+import { db } from '~/lib/db.server'
+import { userSession } from '~/models/user'
+
+const PostFormSchema = z.object {
+	title: z.string().optional()
+	body: z.string(),
+	tags: z.string().default('')
+}
+
+export action := async ({ request }: ActionArgs) =>
+	{ userId, loggedIn } := await userSession(request)
+
+	// TODO
+	throw new Error('nope') unless loggedIn
+
+	body := await request.formData()
+	{ tags, ...data } := PostFormSchema.parse Object.fromEntries body
+
+	post := await db.post.create {
+		data: {
+			...data,
+			users: {
+				connect: {
+					id: userId,
+				},
+			},
+			tags: {
+				connectOrCreate: tags.split(', ').map (tag) =>
+					{
+						where: { name: tag }
+						create: { name: tag }
+					}
+			},
+		},
+	}
+
+	redirect `/posts/${post.id}`
+
+export default => <Outlet />
