@@ -1,7 +1,7 @@
 import { LoaderArgs } from '@remix-run/node'
 import { typedjson, useTypedLoaderData } from 'remix-typedjson'
 import { z } from 'zod'
-import { PostForm } from '~/components/post/form'
+import { PostForm } from '../../..//components/post/form.civet'
 import { db } from '~/lib/db.server'
 import { postIncludes } from '~/models/post'
 

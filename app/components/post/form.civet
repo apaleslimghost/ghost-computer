@@ -1,9 +1,9 @@
 import { Form } from '@remix-run/react'
 import { FC } from 'react'
-import { FullPost } from '~/models/post'
+import type { FullPost } from '~/models/post'
 
-export const PostForm: FC<{ post?: FullPost }> = ({ post }) => (
-	<Form action={`/posts${post ? `/${post.id}` : ''}`} method='post'>
+export PostForm: FC<{ post?: FullPost }> := ({ post }) =>
+	<Form action=`/posts${post ? `/${post.id}` : ''}` method='post'>
 		<h2 className='field'>
 			<input
 				name='title'
@@ -17,7 +17,7 @@ export const PostForm: FC<{ post?: FullPost }> = ({ post }) => (
 				name='tags'
 				placeholder='tags...'
 				defaultValue={
-					post ? post.tags.map((tag) => tag.name).join(', ') : undefined
+					post ? post.tags.map(&.name).join(', ') : undefined
 				}
 			/>
 		</div>
@@ -30,4 +30,3 @@ export const PostForm: FC<{ post?: FullPost }> = ({ post }) => (
 			<input type='submit' />
 		</div>
 	</Form>
-)
