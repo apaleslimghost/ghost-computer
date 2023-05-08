@@ -1,4 +1,4 @@
-import type { LoaderArgs } from '@remix-run/node'
+import type { ActionArgs, LoaderArgs } from '@remix-run/node'
 import type { TypedMetaFunction } from 'remix-typedjson'
 import { typedjson, useTypedLoaderData } from 'remix-typedjson'
 import { z } from 'zod'
@@ -9,6 +9,29 @@ import { postIncludes } from '~/models/post'
 const PostParamsSchema = z.object({
 	id: z.coerce.number(),
 })
+
+const PostActionSchema = z.object({
+	action: z.literal('like'),
+})
+
+export async function action({ params, request }: ActionArgs) {
+	const { id } = PostParamsSchema.parse(params)
+	const body = await request.formData()
+	const { action } = PostActionSchema.parse(Object.fromEntries(body))
+
+	switch (action) {
+		case 'like': {
+			await db.post.update({
+				where: { id },
+				data: {
+					likes: {
+						increment: 1,
+					},
+				},
+			})
+		}
+	}
+}
 
 export async function loader({ params }: LoaderArgs) {
 	const { id } = PostParamsSchema.parse(params)
